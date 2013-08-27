@@ -73,9 +73,9 @@ $('.search-form form').submit(function(){
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'menu-grid',
-	 'afterAjaxUpdate'=>'sortGrid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+	'afterAjaxUpdate'=>'sortGrid',
 	 'rowCssClassExpression'=>'"items[]_{$data->id}"',
 	'type'=>TbHtml::GRID_TYPE_HOVER,
 	'columns'=>array(

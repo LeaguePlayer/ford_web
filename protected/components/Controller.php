@@ -9,11 +9,19 @@ class Controller extends CController
 	 * @var string page name.
 	 */
 	public $title;
+	public $currentPage;
+	public $id_site;
+	public $settings;
+	
+	public $bottom_list = array();
+	
+	
+	public $top_buttons = array();
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
 	 */
-	public $layout='//layouts/simple';
+	public $layout='//layouts/main';
 	
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
@@ -54,7 +62,20 @@ class Controller extends CController
 		
 		date_default_timezone_set("Asia/Dhaka");
 		// получаем версию сайта
+		$fnc = new Fnc;
+		$this->id_site = $fnc->returnIDSetting($_SERVER['SERVER_NAME']);
+		$this->settings = Settingsite::model()->findByPk($this->id_site);
 		
+		// инициализируем верхнее меню
+		
+		$this->top_buttons[0]['link'] = "/ya_vladelec_ford";
+		$this->top_buttons[0]['text'] = "Я владелец Ford";
+		
+		$this->top_buttons[1]['link'] = "/cars";
+		$this->top_buttons[1]['text'] = "Подобрать себе Ford";
+		
+		$this->top_buttons[2]['link'] = "/dealer";
+		$this->top_buttons[2]['text'] = "О дилере";
 		
 	}
 

@@ -2,7 +2,7 @@
 
 class StaticpageController extends Controller
 {
-	public $layout='//layouts/column2';
+	public $layout='//layouts/main';
 
 	
 	public function filters()
@@ -27,11 +27,32 @@ class StaticpageController extends Controller
 	}
 
 	
-	public function actionView($id)
+	public function actionView($alias)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		
+		$model = Staticpage::model()->find( array( 'condition'=>"meta_alias = :meta_alias", 'params'=>array( ':meta_alias'=>$alias ) ) );
+		
+		if(is_object($model))
+		{
+			$news_stocks = new News;
+			$menu = new Menu;
+			
+			$data['menu'] = $menu->getMenu();
+		
+	
+			$this->bottom_list['title'] = "АКЦИИ";
+			$this->bottom_list['data'] = $news_stocks->getStock();
+			$this->bottom_list['link'] = "stock";
+			$this->bottom_list['link_text'] = "Архив акция";
+			
+			$this->render('view',array(
+				'model'=>$model,
+				'data'=>$data,
+			));
+		}
+		else 
+			throw new CHttpException(404, 'Страница не существует.');
+		
 	}
 
 	

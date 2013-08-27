@@ -22,7 +22,7 @@ $this->menu=array(
 			'name'=>'status',
 			'type'=>'raw',
 			'value'=>'Staticpage::getStatusAliases($data->status)',
-			'filter'=>array(Staticpage::getStatusAliases())
+			'filter'=>Staticpage::getStatusAliases()
 		),
 		
 	

@@ -14,6 +14,7 @@ class UploadableImageBehavior extends CActiveRecordBehavior
      */
     public $savePath='/media/images/';
 	public $thumbsPath='/media/images/thumbs/';
+	//public $maxSize = 5242880;
 	//public $savePath='/media/images/';
 	//public $thumbsPath='/media/images/thumbs/';
 	public $versions = array(
@@ -75,8 +76,7 @@ class UploadableImageBehavior extends CActiveRecordBehavior
     public function beforeSave($event){
         if(in_array($this->owner->scenario,$this->scenarios) &&
             ($file=CUploadedFile::getInstance($this->owner,$this->attributeName))){
-            $this->processDelete(); // старые файлы удалим, потому что загружаем новый
-			
+            $this->processDelete(); // старые файлы удалим, потому что загружаем новыйs
 			$fileName = SiteHelper::genUniqueKey().'.'.$file->extensionName;
             $this->owner->setAttribute($this->attributeName,$fileName);
             $file->saveAs($this->absoluteSavePath.$fileName);

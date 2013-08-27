@@ -85,6 +85,9 @@ class Menu extends EActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => array(
+                'pageSize'=>1000,
+            ),
 			'sort'=>array(
 				'defaultOrder'=>'t.sort ASC',
 			  )
@@ -118,6 +121,32 @@ class Menu extends EActiveRecord
 		
 		
 		return true;
+	}
+	
+	public function getMenu($only_main = false)
+	{
+		$result = array();
+		
+		$value_show_on_main = ($only_main ? "1" : "0, 1");
+		$models = self::model()->with( array('sites' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>"show_on_main in ({$value_show_on_main}) and t.status=1",'order'=>'id_category ASC, t.sort DESC'));	
+		
+		$n = 0;
+		if(count($models) > 0)
+		{
+			foreach ($models as $model)
+			{
+				$result[$model->id_category][$n]['link'] = $model->link;
+				$result[$model->id_category][$n]['title'] = $model->title;
+				
+				$n++;
+			}
+		}
+		
+		//fnc::mpr($result);
+		
+		//die();
+		
+		return $result;
 	}
 
 }

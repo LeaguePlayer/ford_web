@@ -74,9 +74,12 @@ class Staticpage extends EActiveRecord
 					'small' => array(
 						'centeredpreview' => array(90, 90),
 					),
-					'medium' => array(
-						'resize' => array(600, 500),
-					)
+					
+					'big' => array(
+						'centeredpreview' => array(1280, 516),
+						//'cropFromCenter' => array(1280, 516),
+						
+					),
 				),
 			),
 		));
@@ -107,6 +110,9 @@ class Staticpage extends EActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => array(
+                'pageSize'=>1000,
+            ),
 		));
 	}
 	

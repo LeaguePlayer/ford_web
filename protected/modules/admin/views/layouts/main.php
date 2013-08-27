@@ -23,6 +23,7 @@
 				//array('label'=>'Настройки', 'url'=>'/admin'),
 				array('label'=>'Настройки сайта', 'url'=>$this->url_settings),
 				array('label'=>'Пользователи', 'url'=>"/admin/users/list/"),
+				array('label'=>'Заявки', 'url'=>"/admin/orders/list/"),
 				array('label'=>'Разделы', 'url'=>'#', 'items' => array(
 					
 					array('label'=>'Меню', 'url'=>'/admin/menu/list', 'items' => array(
@@ -33,9 +34,24 @@
 						array('label'=>'Создать', 'url'=>"/admin/staticpage/create"),
 						array('label'=>'Список', 'url'=>"/admin/staticpage/list"),
 					)),
-					array('label'=>'Новости', 'url'=>'/admin/news/list', 'items' => array(
+					array('label'=>'Новости', 'url'=>'/admin/news', 'items' => array(
 						array('label'=>'Создать', 'url'=>"/admin/news/create"),
-						array('label'=>'Список', 'url'=>"/admin/news/list"),
+						array('label'=>'Список', 'url'=>"/admin/news"),
+					)),
+					
+					array('label'=>'Акции', 'url'=>'/admin/stock', 'items' => array(
+						array('label'=>'Создать', 'url'=>"/admin/stock/create"),
+						array('label'=>'Список', 'url'=>"/admin/stock"),
+					)),
+					
+					array('label'=>'Слайдер', 'url'=>'/admin/slider/list', 'items' => array(
+						array('label'=>'Создать', 'url'=>"/admin/slider/create"),
+						array('label'=>'Список', 'url'=>"/admin/slider/list"),
+					)),
+					
+					array('label'=>'Сотрудники', 'url'=>'/admin/stuff/list', 'items' => array(
+						array('label'=>'Создать', 'url'=>"/admin/stuff/create"),
+						array('label'=>'Список', 'url'=>"/admin/stuff/list"),
 					)),
 				)),
 			);

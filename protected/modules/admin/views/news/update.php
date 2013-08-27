@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Список', 'url'=>array('list')),
-	array('label'=>'Добавить','url'=>array('create')),
+	array('label'=>'Список', 'url'=>array('list','id_type'=>$id_type)),
+	array('label'=>'Добавить','url'=>array('create','id_type'=>$id_type)),
 );
 ?>
 
