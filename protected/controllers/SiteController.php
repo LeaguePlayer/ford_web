@@ -37,7 +37,7 @@ class SiteController extends Controller
 		$data['menu'] = $menu->getMenu(true);
 		
 	
-		$this->bottom_list['title'] = "НОВОСТИ";
+		$this->bottom_list['title'] = "НОВОСТИ123";
 		$this->bottom_list['data'] = $news_stocks->getNews();
 		$this->bottom_list['link'] = "news";
 		$this->bottom_list['link_text'] = "Архив новостей";
