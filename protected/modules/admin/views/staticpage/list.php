@@ -52,6 +52,7 @@ $this->menu=array(
 						 'view' => array
                         (
                             'url'=>'Yii::app()->createUrl("/{$data->meta_alias}")',
+							'options'=>array('target'=>"_blank"),
                         ),
                         
                     ),

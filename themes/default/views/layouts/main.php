@@ -74,13 +74,9 @@
 		<section class="before_footer">
 			<div class="content fix_width">
 				<div class="col-1">
-					<h3>Кто мы такие?</h3>
+					<h3><?=$this->about->title?></h3>
 					<div class="about">
-						<p>«Автоград» – это уникальный проект не только для Тюменского региона, но и для России в целом благодаря своему масштабу и замыслу.</p>
-
-						<p>На центральной улице нашего города, на территории в 9 гектаров расположился каскад дилерских центров протяженностью в 1 км.</p>
-
-						<p>Тогда же появилось желание «дублировать» уникальный проект в других городах. В 2008 году представительство компании открылось в </p>
+						<?=$this->about->html_content?>
 						<div class="video_block">
 							<div class="video">
 								<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/video-1.jpg" alt="" class="poster">
@@ -99,7 +95,7 @@
 				<div class="col-3">
 					<h3>У Вас есть к нам вопросы?</h3>
 					<div class="contacts">
-						<a href="#feedback-box" class="callback_button fancybox">Связаться с нами</a>
+						<a href="/site/feedback" class="callback_button fancybox">Связаться с нами</a>
 						<div class="map">
 							<div id="map_canvas"></div>
 							<a href="#" class="open">+</a>
@@ -133,45 +129,19 @@
 					</ul>
 				</div>
 				<div class="menu">
-					<a href="#" class="select">Выбери свой Ford</a>
-					<a href="#" class="for_bysines">Для владельцев</a>
+					<a href="/cars" class="select">Выбери свой Ford</a>
+					<a href="/ya_vladelec_ford" class="for_bysines">Для владельцев</a>
 				</div>
 			</div>
 
 			<div class="right">
 				<a class="green_button fancybox" href="/site/testdrive"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""><span>Записаться на тест-драйв</span></a>
-				<a href="" class="amobile">Всегда только лучшие идеи</a>
+				<a href="http://amobile-studio.ru" target="_blank" class="amobile">Всегда только лучшие идеи</a>
 			</div>
 		</div>
 	</div>
 
 	
-
-	
-
-	<div id="insurance-box">
-		<h3 id="ins-header">
-			Страхование FORD
-		</h3>
-		<div id="ins-content">
-			<p>FordСтрахование — специальная программа страхования для тех, кто собирается приобрести новый автомобиль или уже является владельцем автомобиля Ford. Эта программа разработана с целью обеспечения владельцев автомобилей Ford качественной страховой услугой по выгодным ценам. Программа распространяется на следущие модели Ford: Fiesta, Focus, Fusion, C-Max/Grand-C-Max, S-Max, Galaxy, Kuga, Mondeo, Ranger, Explorer.
-			</p>
-			<ul>
-				<li>Привлекательные цены не только для новых, но и для подержанных автомобилей Ford</li>
-				<li>Восстановительный ремонт на кузовной станции официального дилера Ford по технологии завода-изготовителя</li>
-				<li>Использование оригинальных запчастей Ford</li>
-			</ul>
-			<p id="ins-after">
-				Страховой полис по программе FordСтрахование может быть оформлен только непосредственно в дилерском центре официального дилера Ford.
-			</p>
-			<div class="ins-buttons">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/umb.png" alt="">
-				<a href="#" class="green_button ins-release">Оформить страховку</a>
-				<a href="#" class="ins-close">Закрыть</a>
-			</div>
-		</div>
-
-	</div>
 
 	
 </body>

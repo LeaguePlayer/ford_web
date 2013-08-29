@@ -330,7 +330,7 @@ h2 {
   margin-bottom: 45px; }
 
 #feedback-box {
-  display: none;
+
   width: 940px; }
 
 .feedback-col {
@@ -388,7 +388,7 @@ h2 {
   font-size: 20px; }
 
 #insurance-box {
-  display: none;
+
   width: 937px;
   background: url(../img/insurance.jpg) no-repeat;
   height: auto;

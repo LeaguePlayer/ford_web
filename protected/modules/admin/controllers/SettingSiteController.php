@@ -3,6 +3,7 @@
 class SettingSiteController extends AdminController
 {
 	
+	
 	public function actionUpdate($id)
 	{
 		

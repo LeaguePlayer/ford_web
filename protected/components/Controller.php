@@ -14,7 +14,7 @@ class Controller extends CController
 	public $settings;
 	
 	public $bottom_list = array();
-	
+	public $about;
 	
 	public $top_buttons = array();
 	/**
@@ -76,7 +76,10 @@ class Controller extends CController
 		
 		$this->top_buttons[2]['link'] = "/dealer";
 		$this->top_buttons[2]['text'] = "О дилере";
-		
+			
+			
+		// кто мы такие инициализируем
+		$this->about = Staticpage::getSystemPage(18);
 	}
 
 	//Get Clip

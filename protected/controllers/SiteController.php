@@ -9,7 +9,9 @@ class SiteController extends Controller
 	const TYPE_STRAHOVANIE = 2;
 	const TYPE_CREDIT = 3;
 	
-	
+
+ 
+  
 	
 	/**
 	 * Declares class-based actions.
@@ -44,7 +46,7 @@ class SiteController extends Controller
 		$data['menu'] = $menu->getMenu(true);
 		
 	
-		$this->bottom_list['title'] = "НОВОСТИ123";
+		$this->bottom_list['title'] = "НОВОСТИ";
 		$this->bottom_list['data'] = $news_stocks->getNews();
 		$this->bottom_list['link'] = "news";
 		$this->bottom_list['link_text'] = "Архив новостей";
@@ -63,8 +65,10 @@ class SiteController extends Controller
 			
 			$data['menu'] = $menu->getMenu();
 			$data['stuff'] = $stuff->getStuff();
-			$data['page'] = Staticpage::getSystemPage(6);
+			$data['page'] = Staticpage::getSystemPage(26);
 			fnc::registredSEO($data['page']);
+			
+			$data['camera'] = Staticpage::getSystemPage(1);
 	
 			$this->bottom_list['title'] = "НОВОСТИ";
 			$this->bottom_list['data'] = $news_stocks->getNews();
@@ -82,6 +86,9 @@ class SiteController extends Controller
 			
 			$data['menu'] = $menu->getMenu();
 			$data['stuff'] = $stuff->getStuff();
+			
+			$data['page'] = Staticpage::getSystemPage(19);
+			fnc::registredSEO($data['page']);
 			
 	
 			$this->bottom_list['title'] = "НОВОСТИ";
@@ -213,6 +220,131 @@ class SiteController extends Controller
 			Yii::app()->clientScript->registerCssFile( $this->getAssetsUrl()."/css/bootstrap.min.css" );
 			
 			$this->render('/modal_views/test_drive', array('model'=>$model));	
+		}
+		
+	}
+	
+	
+	public function actionFeedback()
+	{
+		//fnc::mpr($_POST);
+		
+		
+		
+		$model = new Orders;
+		
+		if(isset($_POST['Orders']))
+		{
+			
+			$model->attributes=$_POST['Orders'];
+			$model->status = 0;
+			$model->id_type = self::TYPE_FEEDBACK;
+			$model->id_site = $this->id_site;
+			
+			if($model->save())
+			{
+				// отправляем письмо 
+				$mail = ( !empty($this->settings->email_feedback) ? $this->settings->email_feedback : $this->settings->email_main_admin );
+				$fnc = new Fnc;
+				$domains = $fnc->returnDomains();
+				$current_domain = $domains[$this->id_site];
+				$subject = "Заявка с сайта";
+				$message = "Вам пришла заявка с сайта перейдите по <a href='http://{$current_domain}/admin/orders/list/'>ссылке</a>";
+				SiteHelper::sendMail($subject,$message,$mail);
+				
+				
+				
+				$this->redirect(array('/thanks?feedback'));
+			}
+		}
+		
+		if(Yii::app()->request->isAjaxRequest)
+		{
+			$this->renderPartial('/modal_views/feedback', array('model'=>$model, 'type'=>'feedback'));
+		}
+		else
+		{
+			$news_stocks = new News;
+			$menu = new Menu;
+			$stuff = new Stuff;
+			
+			$data['menu'] = $menu->getMenu();
+			$data['stuff'] = $stuff->getStuff();
+			
+			$data['car_menu'] = $car_model; // потом исправить эту штуку
+		
+	
+			$this->bottom_list['title'] = "НОВОСТИ";
+			$this->bottom_list['data'] = $news_stocks->getNews();
+			$this->bottom_list['link'] = "news";
+			$this->bottom_list['link_text'] = "Архив новостей";
+			
+			Yii::app()->clientScript->registerCssFile( $this->getAssetsUrl()."/css/bootstrap.min.css" );
+			
+			$this->render('/modal_views/feedback', array('model'=>$model, 'type'=>'feedback'));	
+		}
+		
+	}
+	
+	
+	
+	public function actionStrahovanie()
+	{
+		//fnc::mpr($_POST);
+		
+		
+		
+		$model = new Orders;
+		
+		if(isset($_POST['Orders']))
+		{
+			
+			$model->attributes=$_POST['Orders'];
+			$model->status = 0;
+			$model->id_type = self::TYPE_STRAHOVANIE;
+			$model->id_site = $this->id_site;
+			
+			if($model->save())
+			{
+				// отправляем письмо 
+				$mail = ( !empty($this->settings->email_strahovanie) ? $this->settings->email_strahovanie : $this->settings->email_main_admin );
+				$fnc = new Fnc;
+				$domains = $fnc->returnDomains();
+				$current_domain = $domains[$this->id_site];
+				$subject = "Заявка с сайта";
+				$message = "Вам пришла заявка с сайта перейдите по <a href='http://{$current_domain}/admin/orders/list/'>ссылке</a>";
+				SiteHelper::sendMail($subject,$message,$mail);
+				
+				
+				
+				$this->redirect(array('/thanks?strahovanie'));
+			}
+		}
+		
+		if(Yii::app()->request->isAjaxRequest)
+		{
+			$this->renderPartial('/modal_views/feedback', array('model'=>$model, 'type'=>'strahovanie'));
+		}
+		else
+		{
+			$news_stocks = new News;
+			$menu = new Menu;
+			$stuff = new Stuff;
+			
+			$data['menu'] = $menu->getMenu();
+			$data['stuff'] = $stuff->getStuff();
+			
+			$data['car_menu'] = $car_model; // потом исправить эту штуку
+		
+	
+			$this->bottom_list['title'] = "НОВОСТИ";
+			$this->bottom_list['data'] = $news_stocks->getNews();
+			$this->bottom_list['link'] = "news";
+			$this->bottom_list['link_text'] = "Архив новостей";
+			
+			Yii::app()->clientScript->registerCssFile( $this->getAssetsUrl()."/css/bootstrap.min.css" );
+			
+			$this->render('/modal_views/feedback', array('model'=>$model, 'type'=>'strahovanie'));	
 		}
 		
 	}

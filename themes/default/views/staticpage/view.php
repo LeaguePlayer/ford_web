@@ -27,8 +27,9 @@
 </section>
 
 <!--END-content-->
-
+<? if(!Yii::app()->request->isAjaxRequest) {?>
 	<section class="site_map four">
 			<?=$this->renderPartial('/menu/list_menu',array('menu'=>$data['menu']))?>
 	</section>
+<? } ?>
 </div>

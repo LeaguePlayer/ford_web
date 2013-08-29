@@ -18,6 +18,8 @@
  */
 class Orders extends EActiveRecord
 {
+	public $verifyCode;
+	
 	
 	
 
@@ -46,6 +48,12 @@ class Orders extends EActiveRecord
 	public function rules()
 	{
 		return array(
+			array(
+					'verifyCode',
+					'captcha',
+					// авторизованным пользователям код можно не вводить
+					'allowEmpty'=>Yii::app()->controller->getAction()->getId() == "testdrive" || !CCaptcha::checkRequirements(),
+				),
 			array('phone, name', 'required'),
 			array('email', 'email','message'=>"Введеный Вами электронный адрес - неверный"),
 			array('id_type, id_site, status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
@@ -79,6 +87,7 @@ class Orders extends EActiveRecord
 			'sort' => 'Вес для сортировки',
 			'create_time' => 'Дата создания',
 			'update_time' => 'Дата последнего редактирования',
+			'verifyCode' => 'Код проверки',
 		);
 	}
 	

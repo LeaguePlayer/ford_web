@@ -32,7 +32,7 @@
 						array('label'=>'Список', 'url'=>"/admin/menu/list"),
 					)),
 					array('label'=>'Страницы', 'url'=>'/admin/staticpage/list', 'items' => array(
-						array('label'=>'Создать', 'url'=>"/admin/staticpage/create"),
+						array('label'=>'Создать', 'url'=>"/admin/staticpage/create/system_page/0"),
 						array('label'=>'Список', 'url'=>"/admin/staticpage/list/system_page/0"),
 					)),
 					array('label'=>'Новости', 'url'=>'/admin/news', 'items' => array(

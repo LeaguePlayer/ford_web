@@ -67,16 +67,16 @@
 			<div class="content fix_width">
 				<h2>Гид покупателя</h2>
 				<div class="round">
-					<div class="step auto"><a href="#" class="">Выбор автомобиля</a></div>
-					<div class="step finance"><a href="#" class="">Финансовые услуги</a></div>
+					<div class="step auto"><a href="/cars" class="">Выбор автомобиля</a></div>
+					<div class="step finance"><a href="/finansovye-uslugi" class="">Финансовые услуги</a></div>
 					<span class="hint">(кредит, лизинг)</span>
-					<div class="step strach"><a href="#insurance-box" class="fancybox">Страхование</a></div>
-					<div class="step contract"><a href="#" class="">FORD Сервис Контракт</a></div>
-					<div class="step help"><a href="#" class="">FORD помощь на дорогах</a></div>
-					<div class="step gibdd"><a href="#" class="">Постановка на учет в ГИБДД</a></div>
-					<div class="step service"><a href="#" class="">Сервисное и гарантийное обслуживание</a></div>
-					<div class="step original"><a href="#" class="">Оригинальные запчасти</a></div>
-					<div class="step treid"><a href="#" class="">Трейд-ин</a></div>
+					<div class="step strach"><a href="/strahovanie" class="fancybox">Страхование</a></div>
+					<div class="step contract"><a href="/programma-fordserviskontrakt" class="">FORD Сервис Контракт</a></div>
+					<div class="step help"><a href="/ford-pomosch-na-dorogah" class="">FORD помощь на дорогах</a></div>
+					<div class="step gibdd"><a href="/postavnovka-na-uchet-v-gibdd" class="">Постановка на учет в ГИБДД</a></div>
+					<div class="step service"><a href="/servisnoe-i-garantiynoe-obsluzhivanie1" class="">Сервисное и гарантийное обслуживание</a></div>
+					<div class="step original"><a href="/original-nye-zapasnye-chasti-ford" class="">Оригинальные запчасти</a></div>
+					<div class="step treid"><a href="/trade-in" class="">Трейд-ин</a></div>
 				</div>
 			</div>
 		</section>
