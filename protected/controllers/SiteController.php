@@ -160,6 +160,16 @@ class SiteController extends Controller
 	{
 		//fnc::mpr($_POST);
 		
+		$mail = ( !empty($this->settings->email_test_drive) ? $this->settings->email_test_drive : $this->settings->email_main_admin );
+		
+		$fnc = new Fnc;
+		$domains = $fnc->returnDomains();
+		$current_domain = $domains[$this->id_site];
+		$subject = "Заявка с сайта";
+		$message = "Вам пришла заявка с сайта перейдите по <a href='http://{$current_domain}/admin/orders/list/'>ссылке</a>";
+		
+		SiteHelper::sendMail($subject,$message,$mail,$from='robot@agrad.ru');
+		
 		$model = new Orders;
 		
 		if(isset($_POST['data']))
@@ -172,6 +182,11 @@ class SiteController extends Controller
 			
 			if($model->save())
 			{
+				// отправляем письмо 
+				
+				
+				
+				
 				$this->redirect(array('/thanks?test_drive'));
 			}
 		}
@@ -196,6 +211,8 @@ class SiteController extends Controller
 			$this->bottom_list['data'] = $news_stocks->getNews();
 			$this->bottom_list['link'] = "news";
 			$this->bottom_list['link_text'] = "Архив новостей";
+			
+			Yii::app()->clientScript->registerCssFile( $this->getAssetsUrl()."/css/bootstrap.min.css" );
 			
 			$this->render('/modal_views/test_drive', array('model'=>$model));	
 		}

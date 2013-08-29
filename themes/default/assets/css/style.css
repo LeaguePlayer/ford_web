@@ -860,3 +860,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		padding-left: 115px;
 		margin-top: 15px;
 	}
+.alert.alert-block.alert-error ul
+{
+	list-style:disc;	
+	margin: 10px 0 10px 25px;
+}

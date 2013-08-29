@@ -3,7 +3,7 @@
     
     <?php 
 	if($model->hasErrors()){
-  echo CHtml::errorSummary($model);
+  echo CHtml::errorSummary($model, null, null, array('class'=>'alert alert-block alert-error'));
 }
  ?>
             <form method="POST" action="/site/testdrive" class="form">
