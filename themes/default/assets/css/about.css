@@ -840,7 +840,9 @@ h2 {
 
 .discount-img {
   width: 1280px;
-  margin-bottom: 100px; }
+  margin-bottom: 100px; 
+ 	text-align:center;
+ }
 
 .discount {
   margin-bottom: 90px; }
@@ -862,7 +864,9 @@ h2 {
     margin-left: 40px; }
 
 .ford {
-  margin-bottom: 80px; }
+  margin-bottom: 80px; 
+  overflow:hidden;
+  }
   .ford .ford-desc {
     display: inline-block;
     vertical-align: middle;
