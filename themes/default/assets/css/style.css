@@ -865,7 +865,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 	list-style:disc;	
 	margin: 10px 0 10px 25px;
 }
-.ford p
+.ford p, .ford ul li
 {
 	line-height: 22px;
 margin-bottom: 18px;	
