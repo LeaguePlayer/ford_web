@@ -111,7 +111,7 @@ class SiteHelper {
 		return $date[0] . '&nbsp;' . $m . '&nbsp;' . $date[2];
 	}
 
-	public static function sendMail($subject,$message,$to='',$from='')
+	public static function sendMail($subject,$message,$to='',$from='robot@agrad.ru')
     {
         if($to=='') $to = Yii::app()->params['adminEmail'];
         if($from=='') $from = 'no-reply@torsim.ru';

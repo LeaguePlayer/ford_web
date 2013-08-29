@@ -160,15 +160,7 @@ class SiteController extends Controller
 	{
 		//fnc::mpr($_POST);
 		
-		$mail = ( !empty($this->settings->email_test_drive) ? $this->settings->email_test_drive : $this->settings->email_main_admin );
 		
-		$fnc = new Fnc;
-		$domains = $fnc->returnDomains();
-		$current_domain = $domains[$this->id_site];
-		$subject = "Заявка с сайта";
-		$message = "Вам пришла заявка с сайта перейдите по <a href='http://{$current_domain}/admin/orders/list/'>ссылке</a>";
-		
-		SiteHelper::sendMail($subject,$message,$mail,$from='robot@agrad.ru');
 		
 		$model = new Orders;
 		
@@ -183,7 +175,13 @@ class SiteController extends Controller
 			if($model->save())
 			{
 				// отправляем письмо 
-				
+				$mail = ( !empty($this->settings->email_test_drive) ? $this->settings->email_test_drive : $this->settings->email_main_admin );
+				$fnc = new Fnc;
+				$domains = $fnc->returnDomains();
+				$current_domain = $domains[$this->id_site];
+				$subject = "Заявка с сайта";
+				$message = "Вам пришла заявка с сайта перейдите по <a href='http://{$current_domain}/admin/orders/list/'>ссылке</a>";
+				SiteHelper::sendMail($subject,$message,$mail);
 				
 				
 				
