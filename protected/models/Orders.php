@@ -103,6 +103,9 @@ class Orders extends EActiveRecord
 		$criteria->compare('update_time',$this->update_time);
 
 		
+		$criteria->addCondition("id_site = :id_site");
+		
+		$criteria->params = array(':id_site'=>Yii::app()->controller->currentSiteId);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

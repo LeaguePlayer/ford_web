@@ -89,10 +89,9 @@ class Stuff extends EActiveRecord
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('update_time',$this->update_time);
 
-		if(Yii::app()->user->id_site!=0)
-		{
-			$criteria->with = array('site' => array('condition'=>"id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->controller->id_site)) );
-		}
+		
+			$criteria->with = array('site' => array('condition'=>"id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->controller->currentSiteId)) );
+		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -27,4 +27,6 @@ class MyHelper {
 	    );
 	    return strtr($str,$tr);
 	}
+	
+	
 }

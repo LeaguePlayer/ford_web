@@ -391,6 +391,20 @@ if(is_object($model))
 		else return $result;
 	}
 	
+	public static function returnSystemGroup($n = false)
+	{
+		$result = array(
+							0=>'О дилере',
+							1=>'WEB-Камера',
+							2=>'Спасибо',
+		);
+		
+		
+		if(is_numeric($n))
+			return $result[$n];
+		else return $result;
+	}
+	
 	
 	public static function returnYesNo($n=false)
 	{
@@ -487,8 +501,21 @@ if(is_object($model))
 	
 	
 	
+		public static function registredSEO($model)
+		{
+			if(is_object($model))
+			{
+				if($model->meta_desc)
+						Yii::app()->clientScript->registerMetaTag($model->meta_desc, 'description');            
+					if($model->meta_keys)
+						Yii::app()->clientScript->registerMetaTag($model->meta_keys, 'keywords');
+					if($model->meta_title) Yii::app()->controller->title=$model->meta_title;
+						else Yii::app()->controller->title = $model->title.' '.Yii::app()->name;
+			}
+			
+		}	
 
-
+	
     
 }
 ?>

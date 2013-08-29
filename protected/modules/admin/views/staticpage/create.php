@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Список','url'=>array('list')),
+	array('label'=>'Список','url'=>array("staticpage/list/system_page/{$system_page}")),
 );
 ?>
 

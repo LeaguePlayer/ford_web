@@ -9,12 +9,7 @@
 	'type'=>TbHtml::GRID_TYPE_HOVER,
 	'columns'=>array(
 		
-		array(
-			'name'=>'id_site',
-			'type'=>'raw',
-			'value'=>'fnc::returnDomains($data->id_site)',
-			'filter'=>fnc::returnDomains()
-		),
+	
 		
 		
 		array(
@@ -26,7 +21,12 @@
 		'car',
 		'name',
 		'phone',
-		'email',
+		
+		array(
+			'name'=>'email',
+			'type'=>'raw',
+			'value'=>'"<a href=\'mailto:{$data->email}\'>{$data->email}</a>"',
+		),
 		array(
 			'name'=>'status',
 			'type'=>'raw',

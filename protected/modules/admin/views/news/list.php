@@ -155,6 +155,16 @@ $('.search-form form').submit(function(){
 				),
 				array(
 					'class'=>'bootstrap.widgets.TbButtonColumn',
+					'template'=>'{view} {update} {delete}',
+                    'buttons'=>array
+                    (
+                        'view' => array
+                        (
+                            'url'=>'Yii::app()->createUrl("/news/{$data->id}")',
+                        ),
+						
+                        
+                    ),
 				),
 			),
 		)); ?>

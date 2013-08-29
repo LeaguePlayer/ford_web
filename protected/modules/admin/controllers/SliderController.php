@@ -19,7 +19,7 @@ class SliderController extends AdminController
 			
 			if($model->save())
 			{
-				if(empty($relationsSites)) $relationsSites=array(Yii::app()->user->id_site);
+				if(empty($relationsSites)) $relationsSites=array(Yii::app()->user->currentSiteId);
 				$model->relationsSites($relationsSites, $model->getModelName());
 				$this->redirect(array('/admin/slider/list/'));
 			}

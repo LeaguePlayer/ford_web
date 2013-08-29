@@ -25,6 +25,18 @@
 	</div>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Staticpage::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
+    
+    
+    <fieldset>
+    	<legend>СИСТЕМНАЯ СТРАНИЦА</legend>
+        
+        <?php echo $form->dropDownListControlGroup($model, 'system_page', fnc::returnYesNo(), array('class'=>'span8', 'displaySize'=>1)); ?>
+        
+        <?php echo $form->dropDownListControlGroup($model, 'system_group', fnc::returnSystemGroup(), array('class'=>'span8', 'displaySize'=>1)); ?>
+
+    
+    </fieldset>
+    
 	
     <fieldset>
     	<legend>ДЛЯ SEO-СПЕЦИАЛИСТА</legend>

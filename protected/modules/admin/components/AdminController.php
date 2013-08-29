@@ -18,6 +18,11 @@ class AdminController extends CController
 	public $url_settings;
 	public $available_array_domains;
 	
+	public $username;
+	
+	public $currentSite;
+	public $currentSiteId;
+	
 	
 	public function actions()
     {
@@ -76,10 +81,15 @@ class AdminController extends CController
 		if(!Yii::app()->user->isGuest)
 		{
 			$this->available_array_domains = $fnc->returnAvailableDomains(Yii::app()->user->id_site);
+			$this->username = Yii::app()->user->username;
+			
+			$this->currentSite = Yii::app()->user->currentSite;
+			$this->currentSiteId = Yii::app()->user->currentSiteId;
+			
 			
 			if(Yii::app()->user->id_site==0)
 				$this->url_settings = "/admin/settingsite/list";	
-			else $this->url_settings = "/admin/settingsite/update/id/{$this->id_site}";
+			else $this->url_settings = "/admin/settingsite/update/id/{$this->currentSiteId}";
 		}
 			
 		

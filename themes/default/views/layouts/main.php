@@ -54,7 +54,7 @@
 				
 		</ul>
 		<div class="test">
-			<a class="green_button fancybox" href="#test-drive-box"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""></a>
+			<a class="green_button fancybox" href="/site/testdrive"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""></a>
 			<div class="hint">Записаться на тест-драйв</div>
 		</div>
 		<ul class="contacts">
@@ -145,57 +145,7 @@
 		</div>
 	</div>
 
-	<div id="test-drive-box">
-		<form action="" class="form">
-			<div class="drive-col left">
-				<h3 id="drive-header">Запись на тест-драйв</h3>
-					<div class="row">
-						<label for="input0">Выбранная модель</label>
-						<input id="input0" class="blue_text" type="text" value="select">
-					</div>
-					<div class="row">
-						<label for="input1">Как Вас зовут</label>
-						<input id="input1" class="blue_text" type="text" value="Александр Березкин">
-					</div>
-					<div class="row">
-						<label for="input2">Ваш телефон</label>
-						<input id="input2" class="blue_text" type="text" value="+7900000000">
-					</div>
-					<div class="row">
-						<label for="input3">Ваш e-mail</label>
-						<input id="input3" class="blue_text" type="text" value="mailbox@mail.ru">
-						<div class="arrow">
-							Сюда мы направим всю информацию по тест-драйву
-						</div>
-					</div>
-					
-					
-			</div>
-			<div class="drive-col right">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/drive-car.png" alt="">
-				<p class="comment">
-					Комментарий
-					</p>
-					<textarea name="comment" id="comment" cols="30" rows="4">Здравствуйте, уважаемый Автоград. Меня зовут Александр и я хочу прокатиться на новом Форде Фокусе.
-					</textarea>
-			</div>
-			<div class="button-row">
-				<div class="write">
-					<img src="<?php echo $this->getAssetsUrl() ?>/img/24.png" alt="">
-					<p class="24text">Мы свяжемся с вами в течение 24 часов</p>
-					<a class="green_button" href="#">Записаться</a>
-
-				</div>
-				<div class="secured">
-					<div class="texts">
-						<p id="text1">Ваши данные в безопасности</p>
-						<p id="text2">Мы используем защищенное соединение</p>
-					</div>	
-				</div>
-		</div>
-		</form>
-			
-	</div>
+	
 
 	<div id="feedback-box">
 		<form action="" class="form">

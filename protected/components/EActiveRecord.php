@@ -260,13 +260,13 @@ class EActiveRecord extends CActiveRecord
 	public function validForEdit()
 	{
 		
-		$site_id_edited_user = $this->with( array('site' => array('condition' => '(id_site = :id_site or id_site=0)','params'=>array(':id_site'=>Yii::app()->user->id_site))) )->findByPk($this->id)->site->id_site;
+		$site_id_edited_user = $this->with( array('site' => array('condition' => '(id_site = :id_site or id_site=0)','params'=>array(':id_site'=>Yii::app()->user->currentSiteId))) )->findByPk($this->id)->site->id_site;
 		//echo count($site_id_edited_user);die();
 		
 		//echo $site_id_edited_user;die();
-		if(Yii::app()->user->id_site==0) return false;
+		if(Yii::app()->user->currentSiteId==0) return false;
 		
-		if(  ( Yii::app()->user->id_site!=$site_id_edited_user and $site_id_edited_user!=0 ) or count($site_id_edited_user)==0 )
+		if(  ( Yii::app()->user->currentSiteId!=$site_id_edited_user and $site_id_edited_user!=0 ) or count($site_id_edited_user)==0 )
 			return true;
 		else return false;
 			

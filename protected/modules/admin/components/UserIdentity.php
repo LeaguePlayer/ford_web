@@ -29,7 +29,26 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else
 		{	
+			 $fnc = new Fnc;
+			 $domains = $fnc->returnAvailableDomains($find_user->site->id_site);
+			 
+			 $sites_user = Users::model()->with( 'sites' )->findByPk($find_user->id);
+			
+			
+			$array_avail_site = CHtml::listData($sites_user->sites, 'id_site', 'id_site');
+			
+			if(count($array_avail_site) == 1 and reset($array_avail_site) ==0 )
+				$array_avail_site = array( 1=>1, 2=>2, 3=>3 );
+			
+			
+		
 			 $this->setState('id_site', $find_user->site->id_site);
+			 $this->setState('username', $find_user->login);
+			 $this->setState('currentSiteId', Yii::app()->controller->id_site);
+			 $this->setState('currentSite', $domains[Yii::app()->controller->id_site]);	
+			 $this->setState('avail_sites', $array_avail_site);	
+			 
+			 
 			 $this->errorCode=self::ERROR_NONE;
 		}
 		return !$this->errorCode;

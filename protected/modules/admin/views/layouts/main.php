@@ -24,6 +24,7 @@
 				array('label'=>'Настройки сайта', 'url'=>$this->url_settings),
 				array('label'=>'Пользователи', 'url'=>"/admin/users/list/"),
 				array('label'=>'Заявки', 'url'=>"/admin/orders/list/"),
+				array('label'=>'Системные страницы', 'url'=>"/admin/staticpage/list/system_page/1"),
 				array('label'=>'Разделы', 'url'=>'#', 'items' => array(
 					
 					array('label'=>'Меню', 'url'=>'/admin/menu/list', 'items' => array(
@@ -32,7 +33,7 @@
 					)),
 					array('label'=>'Страницы', 'url'=>'/admin/staticpage/list', 'items' => array(
 						array('label'=>'Создать', 'url'=>"/admin/staticpage/create"),
-						array('label'=>'Список', 'url'=>"/admin/staticpage/list"),
+						array('label'=>'Список', 'url'=>"/admin/staticpage/list/system_page/0"),
 					)),
 					array('label'=>'Новости', 'url'=>'/admin/news', 'items' => array(
 						array('label'=>'Создать', 'url'=>"/admin/news/create"),
@@ -65,6 +66,16 @@
 			);
             */
 		?>
+        
+        <?
+			$domains = Yii::app()->user->avail_sites;
+			foreach ($domains as $key => $domain)
+			{
+				$menuDomains[] = array('label'=>fnc::returnDomains($domain), 'url'=>"/admin/settingsite/switchsite/to/{$key}");
+			}
+			
+		?>
+        
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
 			'color'=>'inverse', // null or 'inverse'
 			'brandLabel'=> CHtml::encode(Yii::app()->name),
@@ -76,11 +87,22 @@
 					'class'=>'bootstrap.widgets.TbMenu',
 					'items'=>$menuItems,
 				),
+				
 				array(
 					'class'=>'bootstrap.widgets.TbMenu',
 					'htmlOptions'=>array('class'=>'pull-right'),
 					'items'=>array(
-						array('label'=>'Выйти', 'url'=>'/admin/user/logout'),
+						array('label'=>"Выйти ($this->username)", 'url'=>'/admin/user/logout'),
+					),
+				),
+				
+				
+				array(
+					'class'=>'bootstrap.widgets.TbMenu',
+					
+					'htmlOptions'=>array('class'=>'pull-right'),
+					'items'=>array(
+						array('label'=>"$this->currentSite", 'url'=>'#', 'items' => $menuDomains),
 					),
 				),
 			),

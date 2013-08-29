@@ -24,7 +24,7 @@ $this->menu=array(
 			'name'=>'status',
 			'type'=>'raw',
 			'value'=>'Users::getStatusAliases($data->status)',
-			'filter'=>array(Users::getStatusAliases())
+			'filter'=>Users::getStatusAliases()
 		),
 		
 		array(

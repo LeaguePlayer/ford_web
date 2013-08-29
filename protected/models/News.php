@@ -150,10 +150,9 @@ class News extends EActiveRecord
 		
 		
 
-		if(Yii::app()->user->id_site!=0)
-		{
-			$criteria->with = array('site' => array('condition'=>"(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site)) );
-		}
+		
+			$criteria->with = array('site' => array('condition'=>"(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->currentSiteId)) );
+		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -264,9 +263,9 @@ class News extends EActiveRecord
 		
 		
 		
-		$model = self::model()->with( array('sites' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>'id_type=1 and super_show=0 and t.status=1 and (super_work_to>=NOW() or super_work_to = "1970-01-01 06:00:00")','order'=>'t.sort ASC','limit'=>$rows));	
+		$model = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>'id_type=1 and super_show=0 and t.status=1 and (super_work_to>=NOW() or super_work_to = "1970-01-01 06:00:00")','order'=>'t.sort ASC','limit'=>$rows));	
 		
-		$this->super_stock = self::model()->with( array('sites' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->find(array('condition'=>'id_type=1 and super_show=1  and t.status=1 and (super_work_to>=NOW() or super_work_to = "1970-01-01 06:00:00")'));
+		$this->super_stock = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->find(array('condition'=>'id_type=1 and super_show=1  and t.status=1 and (super_work_to>=NOW() or super_work_to = "1970-01-01 06:00:00")'));
 		
 		
 	

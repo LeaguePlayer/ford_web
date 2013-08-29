@@ -75,10 +75,10 @@ class Users extends EActiveRecord
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('update_time',$this->update_time);
 		 
-		if(Yii::app()->user->id_site!=0)
-		{
-			$criteria->with = array('site' => array('condition'=>"id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->controller->id_site)) );
-		}
+		//if(Yii::app()->user->id_site!=0)
+		//{
+			$criteria->with = array('site' => array('condition'=>"(id_site = :id_site or id_site = 0)",'params'=>array(':id_site'=>Yii::app()->user->currentSiteId)) );
+		//}
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -102,5 +102,8 @@ class Users extends EActiveRecord
 	{
 		return __CLASS__;
 	}
+	
+	
+	
 
 }

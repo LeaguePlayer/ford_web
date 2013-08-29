@@ -4,6 +4,13 @@ class SiteController extends Controller
 {
 	public $layout = '//layouts/main';
 	
+	const TYPE_TEST_DRIVE = 0;
+	const TYPE_FEEDBACK = 1;
+	const TYPE_STRAHOVANIE = 2;
+	const TYPE_CREDIT = 3;
+	
+	
+	
 	/**
 	 * Declares class-based actions.
 	 */
@@ -56,7 +63,8 @@ class SiteController extends Controller
 			
 			$data['menu'] = $menu->getMenu();
 			$data['stuff'] = $stuff->getStuff();
-		
+			$data['page'] = Staticpage::getSystemPage(6);
+			fnc::registredSEO($data['page']);
 	
 			$this->bottom_list['title'] = "НОВОСТИ";
 			$this->bottom_list['data'] = $news_stocks->getNews();
@@ -74,7 +82,7 @@ class SiteController extends Controller
 			
 			$data['menu'] = $menu->getMenu();
 			$data['stuff'] = $stuff->getStuff();
-		
+			
 	
 			$this->bottom_list['title'] = "НОВОСТИ";
 			$this->bottom_list['data'] = $news_stocks->getNews();
@@ -122,5 +130,75 @@ class SiteController extends Controller
 			else
 				$this->render('error', $error);
 		}
+	}
+	
+	public function actionThanks()
+	{
+		
+			$news_stocks = new News;
+			$menu = new Menu;
+			$stuff = new Stuff;
+			
+			
+			$data['menu'] = $menu->getMenu();
+			$data['stuff'] = $stuff->getStuff();
+			
+			$data['page'] = Staticpage::getSystemPage(2);
+			fnc::registredSEO($data['page']);
+		
+	
+			$this->bottom_list['title'] = "НОВОСТИ";
+			$this->bottom_list['data'] = $news_stocks->getNews();
+			$this->bottom_list['link'] = "news";
+			$this->bottom_list['link_text'] = "Архив новостей";
+			
+			$this->render('thanks',array('data'=>$data));	
+	}
+	
+	
+	public function actionTestDrive()
+	{
+		//fnc::mpr($_POST);
+		
+		$model = new Orders;
+		
+		if(isset($_POST['data']))
+		{
+			
+			$model->attributes=$_POST['data'];
+			$model->status = 0;
+			$model->id_type = self::TYPE_TEST_DRIVE;
+			$model->id_site = $this->id_site;
+			
+			if($model->save())
+			{
+				$this->redirect(array('/thanks?test_drive'));
+			}
+		}
+		
+		if(Yii::app()->request->isAjaxRequest)
+		{
+			$this->renderPartial('/modal_views/test_drive', array('model'=>$model));
+		}
+		else
+		{
+			$news_stocks = new News;
+			$menu = new Menu;
+			$stuff = new Stuff;
+			
+			$data['menu'] = $menu->getMenu();
+			$data['stuff'] = $stuff->getStuff();
+			
+			$data['car_menu'] = $car_model; // потом исправить эту штуку
+		
+	
+			$this->bottom_list['title'] = "НОВОСТИ";
+			$this->bottom_list['data'] = $news_stocks->getNews();
+			$this->bottom_list['link'] = "news";
+			$this->bottom_list['link_text'] = "Архив новостей";
+			
+			$this->render('/modal_views/test_drive', array('model'=>$model));	
+		}
+		
 	}
 }

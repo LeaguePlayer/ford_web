@@ -1,6 +1,6 @@
 <?php
 $this->menu=array(
-	array('label'=>'Добавить','url'=>array('create')),
+	array('label'=>'Добавить','url'=>array("staticpage/create/system_page/{$system_page}")),
 );
 ?>
 
@@ -38,7 +38,7 @@ $this->menu=array(
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-			'template'=>'{cash} {update} {delete}',
+			'template'=>'{cash} {view} {update} {delete}',
                     'buttons'=>array
                     (
                         'cash' => array
@@ -49,7 +49,10 @@ $this->menu=array(
                             //'imageUrl'=>Yii::app()->request->baseUrl.'/media/images/cloud.png',
                             'url'=>'Yii::app()->createUrl("/admin/menu/create", array("page"=>$data->id))',
                         ),
-						
+						 'view' => array
+                        (
+                            'url'=>'Yii::app()->createUrl("/{$data->meta_alias}")',
+                        ),
                         
                     ),
 		),

@@ -6,7 +6,7 @@ class SettingSiteController extends AdminController
 	public function actionUpdate($id)
 	{
 		
-		if( (Yii::app()->user->id_site!=0) and ( Yii::app()->user->id_site!=$id ) )
+		if( (Yii::app()->user->id_site!=0) and ( Yii::app()->user->currentSiteId!=$id ) )
 			throw new CHttpException(404, 'Unable to find the requested object.');
 		
 		$model = $this->loadModel("Settingsite",$id);
@@ -55,6 +55,29 @@ class SettingSiteController extends AdminController
 			
 			
 		));
+	}
+	
+	
+	public function actionSwitchSite($to)
+	{
+		$domains = Yii::app()->user->avail_sites;
+		
+		if( !empty($domains[$to]) )
+		{
+			
+			$fnc = new Fnc;
+			$domains = $fnc->returnDomains();
+			Yii::app()->user->setState('currentSiteId', $to);
+			Yii::app()->user->setState('currentSite', $domains[$to]);	
+			
+			$this->redirect(Yii::app()->request->getUrlReferrer(true));
+			
+		}
+		else 
+			throw new CHttpException(404, 'Страница не  существует');
+		
+		
+		
 	}
 	
 	

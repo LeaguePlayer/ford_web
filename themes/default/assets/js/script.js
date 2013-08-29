@@ -2,6 +2,7 @@
 $(document).ready(function() {
 
 	$(".fancybox").fancybox({
+		type: 'ajax',
 		afterShow: function() {
 			//$this = $(this);
 			$("form").find('select').selectbox();
@@ -9,6 +10,8 @@ $(document).ready(function() {
 		padding: 0,
 		fitToView: false,
 	});
+	
+	
 
 
 	$('#header .test a').mouseenter(function() {

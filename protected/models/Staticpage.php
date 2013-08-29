@@ -27,12 +27,13 @@ class Staticpage extends EActiveRecord
 	public function rules()
 	{
 		return array(
+			array('meta_alias','unique'),
 			array('title, html_content', 'required'),
-			array('status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
+			array('status, system_group, system_page,  sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
 			array('title, meta_title, meta_alias', 'length', 'max'=>255),
 			array('html_content, meta_keys, meta_desc', 'safe'),
 			// The following rule is used by search().
-			array('id, title, html_content, image, status, meta_title, meta_keys, meta_desc, sort, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, system_group, title, system_page, html_content, image, status, meta_title, meta_keys, meta_desc, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +62,8 @@ class Staticpage extends EActiveRecord
 			'sort' => 'Вес для сортировки',
 			'create_time' => 'Дата создания',
 			'update_time' => 'Дата последнего редактирования',
+			'system_page' => 'Использовать как системную страницу',
+			'system_group' => 'Системная группа',
 		);
 	}
 	
@@ -101,12 +104,12 @@ class Staticpage extends EActiveRecord
 		$criteria->compare('sort',$this->sort);
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('update_time',$this->update_time);
+		$criteria->compare('system_page',$this->system_page);
 		
 		
-		if(Yii::app()->user->id_site!=0)
-		{
-			$criteria->with = array('site' => array('condition'=>"(id_site = :id_site or id_site = 0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site)) );
-		}
+		
+			$criteria->with = array('site' => array('condition'=>"(id_site = :id_site or id_site = 0)",'params'=>array(':id_site'=>Yii::app()->controller->currentSiteId)) );
+		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -129,6 +132,14 @@ class Staticpage extends EActiveRecord
 	public function getModelName()
 	{
 		return __CLASS__;
+	}
+	
+	
+	public static function getSystemPage($id)
+	{
+		$page = self::model()->with(array('site' => array('condition'=>"id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->controller->id_site)) ))->find("system_page = 1 and system_group = :id_system_group",array(':id_system_group'=>$id));	
+		
+		return $page;
 	}
 
 }

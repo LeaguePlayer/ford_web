@@ -2,7 +2,7 @@
 
 class StaticpageController extends AdminController
 {
-	public function actionCreate()
+	public function actionCreate($system_page)
 	{
 		
 			
@@ -25,15 +25,15 @@ class StaticpageController extends AdminController
 			{
 				if(empty($relationsSites)) $relationsSites=array(Yii::app()->user->id_site);
 				$model->relationsSites($relationsSites, $model->getModelName());
-				$this->redirect(array('/admin/staticpage/list/'));
+				$this->redirect(array("/admin/staticpage/list/system_page/{$model->system_page}"));
 			}
 		}
 		
 		
+		$model->system_page = $system_page;
 		
 		
-		
-		$this->render('create',array('model'=>$model));
+		$this->render('create',array('model'=>$model , 'system_page'=>$system_page));
 	}
 	
 	
@@ -71,12 +71,58 @@ class StaticpageController extends AdminController
 			if($model->save())
 			{
 				$model->relationsSites($relationsSites, $model->getModelName());
-				$this->redirect(array('/admin/staticpage/list/'));	
+				$this->redirect(array("/admin/staticpage/list/system_page/{$model->system_page}"));	
 			}
 		}
 		
 		
 		
 		$this->render('update',array('model'=>$model));
+	}
+	
+	
+	
+	public function actionList($system_page)
+	{
+		
+		
+		$model=new Staticpage('search');
+		
+		$model->unsetAttributes();  // clear any default values
+		$model->system_page = $system_page;
+		if(isset($_GET['Staticpage']))
+			$model->attributes=$_GET['Staticpage'];
+			
+	
+		
+		
+
+		$this->render('list',array(
+			'model'=>$model, 
+			'system_page'=>$system_page,
+			
+		));
+	}
+	
+	
+	public function actionDelete($id)
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$model=Staticpage::model()->findByPk($id);
+			
+			if($model->system_page == 1)die('imposible!');
+			else
+			
+			
+			$model->delete();
+			
+			
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 }
