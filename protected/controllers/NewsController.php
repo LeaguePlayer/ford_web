@@ -86,6 +86,7 @@ class NewsController extends Controller
 	
 	public function actionSpisok($id_type)
 	{
+		
 			if(is_numeric($id_type))
 			{
 				$news_stocks = new News;
@@ -98,6 +99,10 @@ class NewsController extends Controller
 				if($data['id_type']==1) 
 				{
 					$data['spisok'] =  $news_stocks->getStock(true);
+					
+					if(count($data['spisok']) == 0)
+					 	throw new CHttpException(404, 'Записи не найдены');
+					
 					$data['super_stock'] = $news_stocks->super_stock;
 					$data['title'] =  "Другие предложения";
 					$this->bottom_list['title'] = "НОВОСТИ";
@@ -108,6 +113,9 @@ class NewsController extends Controller
 				else
 				{
 					$data['spisok'] =  $news_stocks->getNews();
+					if(count($data['spisok']) == 0)
+					 	throw new CHttpException(404, 'Записи не найдены');
+						
 					$data['title'] =  "Список новостей";
 					$this->bottom_list['title'] = "АКЦИИ";
 					$this->bottom_list['data'] = $news_stocks->getStock(true);

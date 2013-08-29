@@ -58,15 +58,15 @@
 			</div>
 				
 			<div class="block first">
-				<a href="#" class="block_head">Узнать о наших акциях</a>
-				<p href="#" class="block_text">Мы постоянно проводим различные акции и спецпредложения</p>
+				<a href="/stock" class="block_head">Узнать о наших акциях</a>
+				<p class="block_text">Мы постоянно проводим различные акции и спецпредложения</p>
 			</div>
 			<div class="block second">
-				<a href="#" class="block_head">Выбрать модель FORD</a>
-				<p href="#" class="block_text">Выберите модель Ford по своему вкусу</p>
+				<a href="/cars" class="block_head">Выбрать модель FORD</a>
+				<p class="block_text">Выберите модель Ford по своему вкусу</p>
 			</div>
 			<div class="block third">
-				<a href="#" class="block_head">Программа TradeIn</a>
+				<a href="/trade-in" class="block_head">Программа TradeIn</a>
 			</div>
 		</section>
         
