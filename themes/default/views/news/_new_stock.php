@@ -12,11 +12,7 @@
             
 			<div class="others-text">
             
-            	   <? if( $id_type==1 ) { ?>
-                        <?=$spisok->html_content?>
-                   <? } else { ?>
-                        <?=$spisok->super_short_desc?>
-                   <? } ?>
+            	    <?=$spisok->super_short_desc?>
 					
                 
                </div>
