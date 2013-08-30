@@ -254,7 +254,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 }
 	#content .specials {
 		overflow: hidden;
-		margin-top: 60px;
+		
 	}
 	#content .specials h2.caption {
 		font-size: 36px;
