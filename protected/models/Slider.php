@@ -139,7 +139,7 @@ class Slider extends EActiveRecord
 	public static function getSliders()
 	{
 		
-		$model = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>'t.status=1','order'=>'t.sort ASC'));	
+		$model = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>'t.status=1','order'=>'t.sort ASC','limit'=>7));	
 		
 		
 		

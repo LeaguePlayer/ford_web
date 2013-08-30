@@ -336,6 +336,11 @@ h2 {
 #feedback-box {
  
   width: 940px; }
+  
+.fancybox-inner  #feedback-box 
+  {
+		padding-top:25px;  
+  }
 
 .feedback-col {
   display: inline-block;
