@@ -67,10 +67,10 @@ class Slider extends EActiveRecord
 				'class' => 'admin.behaviors.UploadableImageBehavior',
 				'versions' => array(
 					'small' => array(
-						'centeredpreview' => array(90, 90),
+						'centeredpreview' => array(121, 69),
 					),
-					'medium' => array(
-						'resize' => array(600, 500),
+					'big' => array(
+						'centeredpreview' => array(1280, 548),
 					)
 				),
 			),
@@ -93,7 +93,7 @@ class Slider extends EActiveRecord
 		$criteria->compare('update_time',$this->update_time);
 
 		
-			$criteria->with = array('site' => array('condition'=>"id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->controller->currentSiteId)) );
+			$criteria->with = array('site' => array('condition'=>"(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->currentSiteId)) );
 		
 
 		return new CActiveDataProvider($this, array(
@@ -134,6 +134,18 @@ class Slider extends EActiveRecord
 		
 		
 		return true;
+	}
+	
+	public static function getSliders()
+	{
+		
+		$model = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>'t.status=1','order'=>'t.sort ASC'));	
+		
+		
+		
+		
+		
+		return $model;
 	}
 
 }

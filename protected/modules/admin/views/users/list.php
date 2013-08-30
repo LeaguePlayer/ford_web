@@ -12,6 +12,7 @@ $this->menu=array(
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'type'=>TbHtml::GRID_TYPE_HOVER,
+	'rowCssClassExpression'=>'"status_{$data->status}"',
 	'columns'=>array(
 		
 		

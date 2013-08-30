@@ -38,6 +38,19 @@
 	<?php echo $form->textFieldControlGroup($model,'rows_stock_in_main',array('class'=>'span8')); ?>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', SettingSite::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
+    
+    <fieldset>
+    	<legend>ДЛЯ SEO-СПЕЦИАЛИСТА</legend>
+        
+        <?php echo $form->textFieldControlGroup($model,'meta_title',array('class'=>'span8','maxlength'=>255)); ?>
+
+		<?php echo $form->textAreaControlGroup($model,'meta_keys',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
+
+		<?php echo $form->textAreaControlGroup($model,'meta_desc',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
+    
+    </fieldset>
+    
+    
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

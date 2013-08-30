@@ -39,8 +39,8 @@ class Settingsite extends EActiveRecord
 		return array(
 			array('email_main_admin, phone_code_city, rows_stock_in_main', 'required'),
 			array('rows_stock_in_main, status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
-			array('link_on_facebook, link_on_vk, link_on_twitter, link_on_webcam, email_main_admin, email_test_drive, email_feedback, email_strahovanie, email_service, email_credit, phone_code_city, phone_sales, phone_service, street', 'length', 'max'=>255),
-			array('access_to_test_drive', 'safe'),
+			array('link_on_facebook, link_on_vk, link_on_twitter, link_on_webcam, email_main_admin, email_test_drive, email_feedback, email_strahovanie, email_service, email_credit, phone_code_city, phone_sales, phone_service, street, meta_title', 'length', 'max'=>255),
+			array('access_to_test_drive, meta_keys, meta_desc', 'safe'),
 			// The following rule is used by search().
 			array('id, link_on_facebook, link_on_vk, link_on_twitter, link_on_webcam, email_main_admin, email_test_drive, email_feedback, email_strahovanie, email_service, email_credit, phone_code_city, phone_sales, phone_service, street, access_to_test_drive, rows_stock_in_main, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);

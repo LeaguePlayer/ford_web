@@ -76,7 +76,8 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'afterAjaxUpdate'=>'sortGrid',
-	 'rowCssClassExpression'=>'"items[]_{$data->id}"',
+	 'rowCssClassExpression'=>'"items[]_{$data->id} status_{$data->status}"',
+	  
 	'type'=>TbHtml::GRID_TYPE_HOVER,
 	'columns'=>array(
 		

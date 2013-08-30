@@ -130,15 +130,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 	position: fixed;
 	border: 1px solid black;
 }
-
-
-
-.cont {
-         height: 150px;
-         text-align: center;
- }
       
 #header {
+	
     width: 100%;
     margin: 0 auto;
     position: fixed;
@@ -150,6 +144,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 	z-index: 100;
     }
 
+#shadow {
+	box-shadow: 0 0 50px;
+	width: 100%;
+	height: 75px;
+	position: fixed;
+	z-index: 99;
+	display: none;
+}
 
  #header ul.header_menu {
 		display: inline-block;
@@ -161,6 +163,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 			width: 140px;
 			padding: 0 5px;
 			font-weight: 600
+		}
+		#header ul.header_menu li:last-child
+		{
+			width:100px;	
 		}
 		#header ul.header_menu li a {
 			color: #000;
@@ -240,9 +246,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
    Контент
 ************/
 #content {
+	padding-top: 150px;
+}
+.fancybox-inner #content
+{
+	padding-top:10px;	
 }
 	#content .specials {
 		overflow: hidden;
+		margin-top: 60px;
 	}
 	#content .specials h2.caption {
 		font-size: 36px;
@@ -296,6 +308,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		font-weight: bold;
 		font-size: 16px;
 		margin-bottom: 20px;
+		width: 300px;
 	}
 	#content .special_items .item h3 a {
 		color: #3d9ae0;
@@ -309,7 +322,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		line-height: 1.5;
 	}
 
-	
+	#content .specials .spec_big {}
 	#content .specials .spec_big img {
 		float: left;
 		display: inline-block;
@@ -339,7 +352,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		color: #3d9ae0;
 		font-weight: bold;
 		font-size: 16px;
-		display:block;
+		display: block;
 	}
 	#content .specials .spec_big a:hover {
 		text-decoration: none;
@@ -362,9 +375,46 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		margin-left: -640px;
 	}
 
+	#content .slider .viewport .info {
+		position: absolute;
+		display: inline-block;
+		width: 300px;
+		
+		z-index: 50;
+		left: -370px;
+		top: 0px;
+		background-color: #eeecf2;
+		padding: 30px 35px;
+	}
+
+	#content .slider .viewport .info h2{
+	font-size: 30px;
+	width: 160px;
+	margin-bottom: 40px;
+	text-transform: uppercase;
+	}
+
+	#content .slider .viewport .info p{
+	font-weight: 300;
+	margin-bottom: 35px;
+	line-height:22px;
+	}
+
+	#content .slider .viewport .info a{
+	display: inline-block;
+	text-align: center;
+	background-color: #ffb040;
+	line-height: 3;
+	text-decoration: none;
+	color: #fff;
+	font-weight: 600;
+	width: 200px;
+	border-radius: 6px;
+
+	}
+
 	#content .slider .viewport img {
 	width: 1280px;
-	height: 512px;
 	}
 
 	#content .slider .thumbs_wrap {
@@ -724,18 +774,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		width: 287px;
 		height: 204px;
 	}
-	.before_footer .contacts .map .open {
-		display: block;
-		text-decoration: none;
-		border: 2px solid #000;
-		color: #000;
-		font-size: 12px;
-		font-weight: bold;
-		padding: 0 5px;
-		position: absolute;
-		top: 10px;
-		right: 16px;
-	}
+	
+	
 	.before_footer .contacts .address {
 		color: #fff;
 		font-weight: bold;
@@ -753,7 +793,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 
 #footer {
 	padding: 20px 0;
-	background-color: #373536;
+	background-color: #000;
 }
 	#footer .ford_info {
 		display: inline-block;
@@ -860,13 +900,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		padding-left: 115px;
 		margin-top: 15px;
 	}
-.alert.alert-block.alert-error ul
-{
-	list-style:disc;	
-	margin: 10px 0 10px 25px;
-}
-.ford p, .ford ul li
-{
-	line-height: 22px;
-margin-bottom: 18px;	
-}
+	
+	.alert.alert-block.alert-error ul {
+	 list-style:disc; 
+	 margin: 10px 0 10px 25px;
+ 	}
+
+ 	.fancybox-overlay .discount.fix_width
+	{
+  	width:937px;
+	}
+
+	.fancybox-overlay .ford, .fancybox-overlay .discount
+	{
+	 margin-bottom:0;
+	}

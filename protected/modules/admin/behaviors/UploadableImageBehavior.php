@@ -131,6 +131,8 @@ class UploadableImageBehavior extends CActiveRecordBehavior
 	
 	public function getThumb($version)
 	{
+		$filename = $this->owner->getAttribute($this->attributeName);
+		if(empty($filename)) return false;
 		return $this->thumbsPath.$version.'_'.$this->owner->getAttribute($this->attributeName);
 	}
 	

@@ -44,6 +44,15 @@ class SiteController extends Controller
 		$data['stock'] = $news_stocks->getStock();
 		$data['super_stock'] = $news_stocks->super_stock;
 		$data['menu'] = $menu->getMenu(true);
+		$data['slider'] = Slider::getSliders();
+		
+		
+					if($this->settings->meta_desc)
+						Yii::app()->clientScript->registerMetaTag($this->settings->meta_desc, 'description');            
+					if($this->settings->meta_keys)
+						Yii::app()->clientScript->registerMetaTag($this->settings->meta_keys, 'keywords');
+					if($this->settings->meta_title) Yii::app()->controller->title=$this->settings->meta_title;
+						else Yii::app()->controller->title = Yii::app()->name;
 		
 	
 		$this->bottom_list['title'] = "НОВОСТИ";
@@ -167,6 +176,9 @@ class SiteController extends Controller
 	{
 		//fnc::mpr($_POST);
 		
+	
+		$this->settings->access_to_test_drive = unserialize($this->settings->access_to_test_drive);
+			
 		
 		
 		$model = new Orders;

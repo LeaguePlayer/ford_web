@@ -1,52 +1,64 @@
 @CHARSET "UTF-8";
 .sbHolder{
-	background-color: #2d2d2d;
-	border: solid 1px #515151;
-	font-family: Arial, sans-serif;
-	font-size: 12px;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e8e8e8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e8e8e8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e8e8e8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#e8e8e8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e8e8e8 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#e8e8e8 100%); /* W3C */
+	background: filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e8e8e8',GradientType=0 ); /* IE6-9 */
+	font-family: "Open Sans", sans-serif;
+	font-size: 18px;
 	font-weight: normal;
-	height: 30px;
+	height: 40px;
 	position: relative;
-	width: 200px;
+	width: 320px;
+	border-radius: 12px;
+	margin-bottom: 10px;
+	display: inline-block;
 }
 .sbHolder:focus .sbSelector{
 	
 }
 .sbSelector{
 	display: block;
-	height: 30px;
+	height: 40px;
 	left: 0;
-	line-height: 30px;
+	line-height: 40px;
 	outline: none;
 	overflow: hidden;
 	position: absolute;
 	text-indent: 10px;
 	top: 0;
-	width: 170px;
+	width: 320px;
 }
 .sbSelector:link, .sbSelector:visited, .sbSelector:hover{
-	color: #EBB52D;
+	color: #0cc5fd;
 	outline: none;
 	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
 }
 .sbToggle{
-	background: url(../img/select-icons.png) 0 -116px no-repeat;
+	background: url(select-icons.png) 0 -110px no-repeat;
 	display: block;
-	height: 30px;
+	height: 40px;
 	outline: none;
 	position: absolute;
 	right: 0;
 	top: 0;
-	width: 30px;
+	width: 40px;
+
 }
 .sbToggle:hover{
-	background: url(../img/select-icons.png) 0 -167px no-repeat;
+	background: url(select-icons.png) 0 -161px no-repeat;
 }
 .sbToggleOpen{
-	background: url(../img/select-icons.png) 0 -16px no-repeat;
+	background: url(select-icons.png) 0 -10px no-repeat;
 }
 .sbToggleOpen:hover{
-	background: url(../img/select-icons.png) 0 -66px no-repeat;
+	background: url(select-icons.png) 0 -60px no-repeat;
 }
 .sbHolderDisabled{
 	background-color: #3C3C3C;
@@ -59,48 +71,50 @@
 	
 }
 .sbOptions{
-	background-color: #212121;
-	border: solid 1px #515151;
+	box-shadow: rgb(151, 151, 151) 2px 2px 3px;
+	background-color: #f6f6f6;
+	border: 2px solid #ebebeb;
 	list-style: none;
 	left: -1px;
 	margin: 0;
 	padding: 0;
 	position: absolute;
 	top: 30px;
-	width: 200px;
+	width: 320px;
 	z-index: 1;
 	overflow-y: auto;
+	border-radius: 12px;
 }
 .sbOptions li{
 	padding: 0 7px;
 }
 .sbOptions a{
-	border-bottom: dotted 1px #515151;
 	display: block;
 	outline: none;
 	padding: 7px 0 7px 3px;
 }
 .sbOptions a:link, .sbOptions a:visited{
-	color: #ddd;
+	color: #000;
 	text-decoration: none;
 }
 .sbOptions a:hover,
 .sbOptions a:focus,
 .sbOptions a.sbFocus{
-	color: #EBB52D;
+	color: #0cc5fd;
+	font-weight: bold;
 }
 .sbOptions li.last a{
 	border-bottom: none;
 }
 .sbOptions .sbDisabled{
 	border-bottom: dotted 1px #515151;
-	color: #999;
+	color: #0cc5fd;
 	display: block;
 	padding: 7px 0 7px 3px;
 }
 .sbOptions .sbGroup{
 	border-bottom: dotted 1px #515151;
-	color: #EBB52D;
+	color: #0cc5fd;
 	display: block;
 	font-weight: bold;
 	padding: 7px 0 7px 3px;

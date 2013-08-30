@@ -2631,6 +2631,8 @@ EOD;
      */
     public static function imageRounded($src, $alt = '', $htmlOptions = array())
     {
+		
+		if(empty($src)) return false;
         $htmlOptions['type'] = self::IMAGE_TYPE_ROUNDED;
         return self::image($src, $alt, $htmlOptions);
     }

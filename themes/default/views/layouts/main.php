@@ -11,7 +11,7 @@
 	
 	$cs->registerCoreScript('jquery');
 	$cs->registerCoreScript('jquery.ui');
-	$cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.fancybox.js', CClientScript::POS_END);
+	$cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.fancybox.pack.js?v=2.1.5', CClientScript::POS_END);
 
 	$cs->registerScriptFile('http://api-maps.yandex.ru/2.0.27/?load=package.standard&lang=ru-RU', CClientScript::POS_END);
 	
@@ -35,35 +35,34 @@
 	</head>
 	<body>
 	
- 
   
-   <div class="cont">
-      <div id="header">
-      <a href="/" class="fordlogo"><img src="<?php echo $this->getAssetsUrl() ?>/img/ford-logo.png" alt=""></a>
-		<ul class="header_menu">
-        
-        	<?
-            	if( count($this->top_buttons) > 0 )
-				{
-					foreach ( $this->top_buttons as $button )
-					{
-						echo "<li><a href='{$button[link]}'>{$button[text]}</a></li>";
-					}
-				}
-			?>
-				
-		</ul>
-		<div class="test">
-			<a class="green_button fancybox" href="/site/testdrive"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""></a>
-			<div class="hint">Записаться на тест-драйв</div>
-		</div>
-		<ul class="contacts">
-			<li><span class="part">Отдел продаж: </span><span class="phone">(<?=$this->settings->phone_code_city?>) <strong><?=$this->settings->phone_sales?></strong></span></li>
-			<li><span class="part">Сервис: </span><span class="phone">(<?=$this->settings->phone_code_city?>) <strong><?=$this->settings->phone_service?></strong></span></li>
-		</ul>
-		<a href="/" class="autogradlogo"><img src="<?php echo $this->getAssetsUrl() ?>/img/autograd-logo.png" alt=""></a>
+   <div id="shadow"></div>
+    <div id="header">
+      	<div class="fix_width">
+      		<a href="/" class="fordlogo"><img src="<?php echo $this->getAssetsUrl() ?>/img/ford-logo.png" alt=""></a>
+			<ul class="header_menu">
+					<?
+						if( count($this->top_buttons) > 0 )
+						{
+							foreach ( $this->top_buttons as $button )
+							{
+								echo "<li><a href='{$button[link]}'>{$button[text]}</a></li>";
+							}
+						}
+					?>
+			</ul>
+			<div class="test">
+				<a class="green_button fancybox" href="/site/testdrive"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""></a>
+				<div class="hint">Записаться на тест-драйв</div>
+			</div>
+			<ul class="contacts">
+				<li><span class="part">Отдел продаж: </span><span class="phone">(<?=$this->settings->phone_code_city?>) <strong><?=$this->settings->phone_sales?></strong></span></li>
+				<li><span class="part">Сервис: </span><span class="phone">(<?=$this->settings->phone_code_city?>) <strong><?=$this->settings->phone_service?></strong></span></li>
+			</ul>
+			<a href="/" class="autogradlogo"><img src="<?php echo $this->getAssetsUrl() ?>/img/autograd-logo.png" alt=""></a>
       </div>
   </div>
+      
 
 
 	<?=$content;?>
@@ -139,7 +138,7 @@
 				<a href="http://amobile-studio.ru" target="_blank" class="amobile">Всегда только лучшие идеи</a>
 			</div>
 		</div>
-	</div>
+	
 
 	
 

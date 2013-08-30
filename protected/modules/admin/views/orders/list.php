@@ -7,6 +7,7 @@
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'type'=>TbHtml::GRID_TYPE_HOVER,
+	 'rowCssClassExpression'=>'"status_{$data->status}"',
 	'columns'=>array(
 		
 	
@@ -50,7 +51,7 @@
                         (
                             
 							//'label'=>'<i class="icon-add-menu"></i>',
-							//'options'=>array('target'=>"_blank"),
+							'options'=>array('class'=>"fancybox"),
                             //'imageUrl'=>Yii::app()->request->baseUrl.'/media/images/cloud.png',
                             'url'=>'"/admin/orders/update/id/{$data->id}"',
                         ),

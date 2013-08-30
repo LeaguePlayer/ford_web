@@ -73,3 +73,15 @@ form .line{
 {
 	background-position: 0px -96px;
 }
+.grid-view tbody tr.status_1
+{
+	background-color:#cbffaf;	
+}
+.grid-view tbody tr.status_3
+{
+	background-color:#ff8b8b;	
+}
+.grid-view tbody tr.status_0
+{
+	background-color:#fff;	
+}

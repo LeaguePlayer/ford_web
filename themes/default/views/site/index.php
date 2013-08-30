@@ -12,57 +12,22 @@
             </section>
          <? }?>
 		
-		<section class="slider">
-			<div class="viewport">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/slide-1.jpg" alt="" data-id="1" style="position: absolute; top: 0; left: 0;">
-			</div>
+        <? if( count($data['slider']) > 0 ) { ?>
+       
+            <section class="slider">
+                
+    
+                <?=$this->renderPartial('/slider/_slide',array('slider'=>$data['slider']))?>
+           
+          
 
-			<div class="images" style="display: none">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/slide-1.jpg" alt="" data-id="1">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/slider-2.jpg" alt="" data-id="2">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/slider-3.jpg" alt="" data-id="3">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/slider-4.jpg" alt="" data-id="4">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/slide-5.jpg" alt="" data-id="5">
-			</div>
-
-			<div class="thumbs_wrap fix_width">
-				<ul class="thumbs">
-					<li class="thumb">
-						<a href="1">
-							<span class="title">fORD MUSTANG</span>
-							<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/thumb-1.jpg" alt="">
-						</a>
-					</li>
-					<li class="thumb">
-						<a href="2">
-							<span class="title">fORD ranger new</span>
-							<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/thumb-2.jpg" alt="">
-						</a>
-					</li>
-					<li class="thumb">
-						<a href="3">
-							<span class="title">fORD kuga new</span>
-							<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/thumb-3.jpg" alt="">
-						</a>
-					</li>
-					<li class="thumb">
-						<a href="4">
-							<span class="title">fORD<br> focus</span>
-							<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/thumb-4.jpg" alt="">
-						</a>
-					</li>
-					<li class="thumb">
-						<a href="5">
-							<span class="title">fORD<br> transit</span>
-							<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/thumb-5.jpg" alt="">
-						</a>
-					</li>
-				</ul>
-				<div class="clear"></div>
-			</div>
+			
 		</section>
 
-
+ 		<? } ?>
+        
+        
+        
 		<section class="gide">
 			<div class="content fix_width">
 				<h2>Гид покупателя</h2>

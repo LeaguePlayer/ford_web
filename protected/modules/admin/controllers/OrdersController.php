@@ -13,7 +13,7 @@ class OrdersController extends AdminController
 		
 		
 			
-		$model = Orders::model()->findByPk($id,array( 'condition' => "id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->user->id_site) ));
+		$model = Orders::model()->findByPk($id,array( 'condition' => "id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->controller->id_site) ));
 		
 		
 		// fnc::mpr($model->site->attributes);die();
@@ -29,7 +29,7 @@ class OrdersController extends AdminController
 			
 			
 			
-			$model->attributes=$_POST['Menu'];
+			$model->attributes=$_POST['Orders'];
 			
 			
 			
@@ -45,8 +45,10 @@ class OrdersController extends AdminController
 		
 		
 		
-		
-		$this->render('update',array('model'=>$model));
+		if(Yii::app()->request->isAjaxRequest)
+			$this->renderPartial('update',array('model'=>$model));
+		else
+			$this->render('update',array('model'=>$model));
 	}
 	
 	

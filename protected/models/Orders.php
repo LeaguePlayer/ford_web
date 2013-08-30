@@ -52,7 +52,7 @@ class Orders extends EActiveRecord
 					'verifyCode',
 					'captcha',
 					// авторизованным пользователям код можно не вводить
-					'allowEmpty'=>Yii::app()->controller->getAction()->getId() == "testdrive" || !CCaptcha::checkRequirements(),
+					'allowEmpty'=>array_search(Yii::app()->controller->getAction()->getId(), array( 1=>"testdrive", 2=>"update" ) )  || !CCaptcha::checkRequirements(),
 				),
 			array('phone, name', 'required'),
 			array('email', 'email','message'=>"Введеный Вами электронный адрес - неверный"),

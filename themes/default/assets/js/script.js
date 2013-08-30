@@ -1,17 +1,15 @@
 
 $(document).ready(function() {
-
+$("select").selectbox();
 	$(".fancybox").fancybox({
-		type: 'ajax',
+		type: "ajax",
 		afterShow: function() {
 			//$this = $(this);
-			$("form").find('select').selectbox();
+			$("select").selectbox();
 		},
 		padding: 0,
 		fitToView: false,
 	});
-	
-	
 
 
 	$('#header .test a').mouseenter(function() {
@@ -24,7 +22,7 @@ $(document).ready(function() {
 
 
 	slider();
-	headFade();
+	headShadow();
 
 
 	ymaps.ready(function () {
@@ -52,25 +50,37 @@ $(document).ready(function() {
 			myMap.geoObjects.add(myPlacemark);
         });
 	});
-
 });
 
 
 /* Слайдер */
+
 function slider() {
+
+	///параметры///
+	var slideChangeInterval = 1000; //скорость смены слайда
+	var slideTimer = 10000; //задержка автосмены слайда
+	//////////////
 
 	var currentThumb = $('.slider .thumbs').find('.current').first();
 	var viewport = $('.slider .viewport');
 	var images = {};
+	var thumbs = {};
+	var descriptions = {};
 	$('.slider .images img').each(function() {
 		images[$(this).data('id')] = $(this);
 	});
+	$('.slider .images div').each(function() {
+		descriptions[$(this).data('id')] = $(this);
+	});
+	$('.slider .thumbs .thumb').each(function() {
+		thumbs[$(this).data('id')] = $(this);
+	});
 	var currentImage = viewport.find('img');
-	//var currentImageId = currentImage.data('id');
 
+	var processSlide = function(idSlide) {
+		var backImage = images[idSlide].clone();
 
-
-	var processSlide = function(backImage) {
 		currentImage.css({
 			position: 'absolute',
 			zIndex: 10,
@@ -85,55 +95,102 @@ function slider() {
 			left: 0,
 		});
 
-		//backImage.stop().fadeIn(300);
+
 		viewport.append(backImage);
 		currentImage.stop().fadeOut(300, function() {
-			currentImage.remove();
-			currentImage = backImage;
+		currentImage.remove();
+		currentImage = backImage;
 		});
 	}
 
+	var changeDescription = function(idSlide) {
+		var nextDescription = descriptions[idSlide].clone();
+		var startPosition =  ($(window).width()/2-$(viewport).width()/2+350)*-1;
+		nextDescription.css({'left':startPosition});
+		var slideTarget = $(window).width()+350;
+		var slideTargetLeft = 0;
+		
+
+		viewport.find('div.info').stop(true, true).animate({left: slideTarget, opacity: 0}, slideChangeInterval, function() {
+			$(this).remove();
+		});
+
+		viewport.prepend(nextDescription);
+		nextDescription.css({'opacity':'0'});
+		nextDescription.stop(true, true).animate({opacity: 1, left:600}, slideChangeInterval);
+	}
 
 
-	$('.slider .thumb a').click(function() {
-		// Тумбы
-		var thumb = $(this).parents('.thumb');
+	var changeThumb = function(idSlide) {
+		var thumb = thumbs[idSlide];
+
 		if ( currentThumb !== null ) {
 			currentThumb.removeClass('current').stop(true, true).animate(
 				{
 					borderColor: 'rgba(255, 174, 64, 0)',
 					top: 0,
-				}, 300
+				}, slideChangeInterval
 			);
 		}
 		thumb.addClass('current').stop(true, true).animate(
 			{
 				borderColor: 'rgba(255, 174, 64, 1)',
 				top: -10,
-			}, 300
+			}, slideChangeInterval
 		);
 		currentThumb = thumb;
+	}
 
+	var timerHandle;
 
-
-		// Слайдер
-		var backendImageId = $(this).attr('href');
-		var backendImage = images[backendImageId].clone();
-		processSlide(backendImage);
-
-
+	$('.slider .thumb a').click(function() {
+		var idSlide = $(this).attr('href');
+		clearTimeout(timerHandle);
+		changeThumb(idSlide);
+		processSlide(idSlide);
+		changeDescription(idSlide);
+		timerHandle =  setTimeout(autoSlide, slideTimer);
 		return false;
 	});
+	
+	var autoSlide = function(){
+		
+		var next = currentImage.data('id')+1;
+		var last = $('.slider .images img:last').attr('data-id');
+
+		if((last-next)<0) {
+				next=1;
+		}
+
+		processSlide(next);
+		changeDescription(next)
+		changeThumb(next);
+		timerHandle =  setTimeout(autoSlide, slideTimer);
+	}
+
+	if ($('.slider').is('section')) 
+	{
+		timerHandle = setTimeout(autoSlide, slideTimer);
+		changeDescription(1);
+		changeThumb(1);
+	}
 }
 
-function headFade() {
+function headShadow() {
+	var header = $('#shadow');
+
 	$(window).scroll(function(){
 		var top = $(this).scrollTop();
-	console.log(top);
 
-	if (top==350) {
-		$('#header').css('')
-	}
+		if (top>75) {
+			if ( !header.data('shadowed') ) {
+				header.fadeIn(300);
+				header.data('shadowed', true);
+			}
+		} else {
+			header.fadeOut(300);
+			header.data('shadowed', false);
+		}
 
 	});
 }

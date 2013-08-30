@@ -15,6 +15,17 @@ function showHideElements()
 $(document).ready(function(e) {
     $('#News_id_type').change(showHideElements);
 	
+	$(".fancybox").fancybox({
+		type: 'ajax',
+		afterShow: function() {
+			//$this = $(this);
+			$("form").find('select').selectbox();
+			
+		},
+		
+		padding: 20,
+		fitToView: false,
+	});
 	
 	showHideElements();
 });

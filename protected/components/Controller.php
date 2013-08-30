@@ -77,6 +77,7 @@ class Controller extends CController
 		$this->top_buttons[2]['link'] = "/dealer";
 		$this->top_buttons[2]['text'] = "О дилере";
 			
+		
 			
 		// кто мы такие инициализируем
 		$this->about = Staticpage::getSystemPage(18);
