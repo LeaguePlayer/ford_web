@@ -1,23 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "{{stuff}}".
+ * This is the model class for table "{{partners}}".
  *
- * The followings are the available columns in table '{{stuff}}':
+ * The followings are the available columns in table '{{partners}}':
  * @property integer $id
- * @property string $image
  * @property string $title
- * @property string $short_desc
+ * @property string $image
+ * @property string $link
  * @property integer $status
  * @property integer $sort
  * @property integer $create_time
  * @property integer $update_time
  */
-class Stuff extends EActiveRecord
+class Partners extends EActiveRecord
 {
 	public function tableName()
 	{
-		return '{{stuff}}';
+		return '{{partners}}';
 	}
 
 	
@@ -26,10 +26,9 @@ class Stuff extends EActiveRecord
 		return array(
 			array('title', 'required'),
 			array('status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
-			array('title', 'length', 'max'=>255),
-			array('short_desc', 'safe'),
+			array('title, link', 'length', 'max'=>255),
 			// The following rule is used by search().
-			array('id, image, title, short_desc, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, title, image, link, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -37,8 +36,8 @@ class Stuff extends EActiveRecord
 	public function relations()
 	{
 		return array(
-			'sites' => array(self::HAS_MANY, 'Objectrelations', 'post_id','condition'=>"post_type = 'Stuff'"),
-			'site' => array(self::HAS_ONE, 'Objectrelations', 'post_id', 'order'=>'site.id_site ASC','condition'=>"post_type = 'Stuff'"),
+			'sites' => array(self::HAS_MANY, 'Objectrelations', 'post_id','condition'=>"post_type = 'Partners'"),
+			'site' => array(self::HAS_ONE, 'Objectrelations', 'post_id', 'order'=>'site.id_site ASC','condition'=>"post_type = 'Partners'"),
 		);
 	}
 
@@ -47,9 +46,9 @@ class Stuff extends EActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'image' => 'Фотография сотрудника',
-			'title' => 'Фамилия Имя Отчество',
-			'short_desc' => 'Занимаемая должность',
+			'title' => 'Заголовок партнера',
+			'image' => 'Логотип партнера',
+			'link' => 'Ссылка',
 			'status' => 'Статус',
 			'sort' => 'Вес для сортировки',
 			'create_time' => 'Дата создания',
@@ -68,7 +67,7 @@ class Stuff extends EActiveRecord
 						'centeredpreview' => array(90, 90),
 					),
 					'medium' => array(
-						'centeredpreview' => array(234, 144),
+						'resize' => array(101, 87),
 					)
 				),
 			),
@@ -81,17 +80,15 @@ class Stuff extends EActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('image',$this->image,true);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('short_desc',$this->short_desc,true);
+		$criteria->compare('image',$this->image,true);
+		$criteria->compare('link',$this->link,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('sort',$this->sort);
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('update_time',$this->update_time);
-
 		
-			$criteria->with = array('site' => array('condition'=>"id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->controller->currentSiteId)) );
-		
+		$criteria->with = array('site' => array('condition'=>"(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->currentSiteId)) );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -111,9 +108,8 @@ class Stuff extends EActiveRecord
 	
 	public function translition()
 	{
-		return 'Сотрудники';
+		return 'Партнеры';
 	}
-	
 	
 	public function getModelName()
 	{
@@ -134,12 +130,16 @@ class Stuff extends EActiveRecord
 		return true;
 	}
 	
-	public function getStuff()
+	public static function getPartners()
 	{
-		$model = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>'t.status=1','order'=>'t.sort ASC'));	
 		
-		return $model;
+		
+		
+		$models = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>"t.status=1",'order'=>'t.sort ASC'));	
+		
+	
+		
+		return $models;
 	}
-
 
 }

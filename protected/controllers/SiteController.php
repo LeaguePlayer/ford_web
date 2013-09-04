@@ -74,6 +74,7 @@ class SiteController extends Controller
 			
 			$data['menu'] = $menu->getMenu();
 			$data['stuff'] = $stuff->getStuff();
+			$data['partners'] = Partners::getPartners();
 			$data['page'] = Staticpage::getSystemPage(26);
 			fnc::registredSEO($data['page']);
 			

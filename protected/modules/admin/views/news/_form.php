@@ -44,7 +44,12 @@
     	Yii::import('application.extensions.datetimepicker.BJuiDateTimePicker');
 		$this->widget('BJuiDateTimePicker',array('model'=>$model,'attribute'=>'super_work_to'));
 	?>
-    <?php echo $form->textFieldControlGroup($model,'id_car',array('class'=>'span8')); ?>
+    
+    
+    
+    
+    <?php echo $form->dropDownListControlGroup($model, 'id_car', $data['cars'], array('class'=>'span8', 'displaySize'=>1)); ?>
+    
     </div>
     
     <fieldset class='for_stock'>

@@ -3,10 +3,7 @@ $this->menu=array(
 	array('label'=>'Добавить','url'=>array('create')),
 );
 ?>
-
 <?php
-
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -35,14 +32,14 @@ $('.search-form form').submit(function(){
         
 		function sortGrid()
 		{
-			$('#slider-grid table.items tbody').sortable({
+			$('#partners-grid table.items tbody').sortable({
             forcePlaceholderSize: true,
             forceHelperSize: true,
             items: 'tr',
             update : function () {
-                serial = $('#slider-grid table.items tbody').sortable('serialize', {key: 'items[]', attribute: 'class'});
+                serial = $('#partners-grid table.items tbody').sortable('serialize', {key: 'items[]', attribute: 'class'});
                 $.ajax({
-                    'url': '" . $this->createUrl('//admin/slider/sort') . "',
+                    'url': '" . $this->createUrl('//admin/partners/sort') . "',
                     'type': 'post',
                     'data': serial,
                     'success': function(data){
@@ -65,26 +62,24 @@ $('.search-form form').submit(function(){
 <h1>Управление <?php echo $model->translition(); ?></h1>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'slider-grid',
+	'id'=>'partners-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'afterAjaxUpdate'=>'sortGrid',
-	 'rowCssClassExpression'=>'"status_{$data->status} items[]_{$data->id}"',
-	
+	'rowCssClassExpression'=>'"status_{$data->status} items[]_{$data->id}"',
 	'type'=>TbHtml::GRID_TYPE_HOVER,
 	'columns'=>array(
+		'title',
 		array(
 			'header'=>'Фото',
 			'type'=>'raw',
 			'value'=>'TbHtml::imageRounded($data->getThumb("small"))'
 		),
-		'title',
 		'link',
 		array(
 			'name'=>'status',
 			'type'=>'raw',
-			'value'=>'Slider::getStatusAliases($data->status)',
-			'filter'=>Slider::getStatusAliases()
+			'value'=>'Partners::getStatusAliases($data->status)',
+			'filter'=>array(Partners::getStatusAliases())
 		),
 		
 		array(
@@ -99,6 +94,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{update} {delete}',
 		),
 	),
 )); ?>

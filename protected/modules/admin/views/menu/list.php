@@ -5,8 +5,6 @@ $this->menu=array(
 );
 ?>
 <?php
-
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -76,12 +74,12 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'afterAjaxUpdate'=>'sortGrid',
-	 'rowCssClassExpression'=>'"items[]_{$data->id} status_{$data->status}"',
+	 'rowCssClassExpression'=>'"status_{$data->status} items[]_{$data->id}"',
 	  
 	'type'=>TbHtml::GRID_TYPE_HOVER,
 	'columns'=>array(
 		
-		
+		'title',
 		
 		array(
 			'name'=>'id_category',
@@ -91,7 +89,7 @@ $('.search-form form').submit(function(){
 		),
 		
 		
-		'title',
+		
 		'link',
 		
 		array(

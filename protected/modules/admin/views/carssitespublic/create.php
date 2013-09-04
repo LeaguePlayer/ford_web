@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Список','url'=>array('list')),
+	array('label'=>'Список','url'=>array("carssitespublic/list/id_category/{$id_category}")),
 );
 ?>
 

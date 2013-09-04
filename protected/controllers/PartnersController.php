@@ -1,6 +1,6 @@
 <?php
 
-class CarsController extends Controller
+class PartnersController extends Controller
 {
 	public $layout='//layouts/column2';
 
@@ -37,7 +37,7 @@ class CarsController extends Controller
 	
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Cars');
+		$dataProvider=new CActiveDataProvider('Partners');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

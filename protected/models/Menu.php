@@ -127,7 +127,7 @@ class Menu extends EActiveRecord
 		$result = array();
 		
 		$value_show_on_main = ($only_main ? "1" : "0, 1");
-		$models = self::model()->with( array('sites' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>"show_on_main in ({$value_show_on_main}) and t.status=1",'order'=>'id_category ASC, t.sort DESC'));	
+		$models = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>"show_on_main in ({$value_show_on_main}) and t.status=1",'order'=>'id_category ASC, t.sort ASC'));	
 		
 		$n = 0;
 		if(count($models) > 0)

@@ -21,10 +21,17 @@
 			 
 			$menuItems = array(
 				//array('label'=>'Настройки', 'url'=>'/admin'),
-				array('label'=>'Настройки сайта', 'url'=>$this->url_settings),
-				array('label'=>'Пользователи', 'url'=>"/admin/users/list/"),
+				
+				
 				array('label'=>'Заявки', 'url'=>"/admin/orders/list/"),
 				array('label'=>'Системные страницы', 'url'=>"/admin/staticpage/list/system_page/1"),
+				
+				array('label'=>'Публикация автомобилей', 'url'=>'#', 'items' => array(
+					
+					array('label'=>'Автомобили', 'url'=>"/admin/carssitespublic/list/id_category/1"),
+					array('label'=>'Автомобили в наличии', 'url'=>"/admin/carssitespublic/list/id_category/2"),
+					array('label'=>'Комерческие автомобили', 'url'=>"/admin/carssitespublic/list/id_category/3"),
+				)),
 				array('label'=>'Разделы', 'url'=>'#', 'items' => array(
 					
 					array('label'=>'Меню', 'url'=>'/admin/menu/list', 'items' => array(
@@ -54,6 +61,19 @@
 						array('label'=>'Создать', 'url'=>"/admin/stuff/create"),
 						array('label'=>'Список', 'url'=>"/admin/stuff/list"),
 					)),
+					array('label'=>'Автомобили', 'url'=>'/admin/cars/list', 'items' => array(
+						array('label'=>'Создать', 'url'=>"/admin/cars/create"),
+						array('label'=>'Список', 'url'=>"/admin/cars/list"),
+					)),
+					array('label'=>'Партнеры', 'url'=>'/admin/partners/list', 'items' => array(
+						array('label'=>'Создать', 'url'=>"/admin/partners/create"),
+						array('label'=>'Список', 'url'=>"/admin/partners/list"),
+					)),
+				)),
+				array('label'=>'Настройки', 'url'=>'#', 'items' => array(
+					
+					array('label'=>'Настройки сайта', 'url'=>$this->url_settings),
+					array('label'=>'Пользователи', 'url'=>"/admin/users/list/"),
 				)),
 			);
             

@@ -5,16 +5,16 @@
  *
  * The followings are the available columns in table '{{cars}}':
  * @property integer $id
- * @property string $name
+ * @property string $title
  * @property string $image
  * @property integer $price
  * @property string $video1
  * @property string $video2
  * @property string $video3
+ * @property integer $gallery
  * @property string $meta_title
  * @property string $meta_keys
  * @property string $meta_desc
- * @property integer $gallery
  * @property integer $status
  * @property integer $sort
  * @property integer $create_time
@@ -31,11 +31,12 @@ class Cars extends EActiveRecord
 	public function rules()
 	{
 		return array(
+			array('title', 'required'),
 			array('price, gallery, status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
-			array('name, meta_title', 'length', 'max'=>255),
+			array('title, meta_title', 'length', 'max'=>255),
 			array('video1, video2, video3, meta_keys, meta_desc', 'safe'),
 			// The following rule is used by search().
-			array('id, name, image, price, video1, video2, video3, meta_title, meta_keys, meta_desc, gallery, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, title, image, price, video1, video2, video3, gallery, meta_title, meta_keys, meta_desc, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,16 +52,16 @@ class Cars extends EActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'название авто',
-			'image' => 'фото авто',
-			'price' => 'стоимость авто начинается от',
-			'video1' => 'видео появляется на карточке товара. до 3х штук',
-			'video2' => 'видео появляется на карточке товара. до 3х штук',
-			'video3' => 'видео появляется на карточке товара. до 3х штук',
-			'meta_title' => 'для сеошника',
-			'meta_keys' => 'для сеошника',
-			'meta_desc' => 'для сеошника',
-			'gallery' => 'фотогалерея авто',
+			'title' => 'Название автомобиля',
+			'image' => 'Изображение автомобиля',
+			'price' => 'Выгода до',
+			'video1' => 'Видео №1 код с youtube',
+			'video2' => 'Видео №2 код с youtube',
+			'video3' => 'Видео №3 код с youtube',
+			'gallery' => 'Фотогалерея',
+			'meta_title' => 'META_TITLE',
+			'meta_keys' => 'META_KEYS',
+			'meta_desc' => 'META_DESC',
 			'status' => 'Статус',
 			'sort' => 'Вес для сортировки',
 			'create_time' => 'Дата создания',
@@ -106,16 +107,16 @@ class Cars extends EActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('title',$this->title,true);
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('price',$this->price);
 		$criteria->compare('video1',$this->video1,true);
 		$criteria->compare('video2',$this->video2,true);
 		$criteria->compare('video3',$this->video3,true);
+		$criteria->compare('gallery',$this->gallery);
 		$criteria->compare('meta_title',$this->meta_title,true);
 		$criteria->compare('meta_keys',$this->meta_keys,true);
 		$criteria->compare('meta_desc',$this->meta_desc,true);
-		$criteria->compare('gallery',$this->gallery);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('sort',$this->sort);
 		$criteria->compare('create_time',$this->create_time);
@@ -123,6 +124,12 @@ class Cars extends EActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => array(
+                'pageSize'=>1000,
+            ),
+			'sort'=>array(
+				'defaultOrder'=>'t.create_time DESC',
+			  )
 		));
 	}
 	
@@ -133,7 +140,22 @@ class Cars extends EActiveRecord
 	
 	public function translition()
 	{
-		return 'Авто';
+		return 'Автомобили';
+	}
+	
+	public static function getCars($n = false)
+	{
+		
+		$model = self::model()->findAll(array('condition'=>'t.status=1','order'=>'t.sort ASC'));	
+		
+		
+		$array = CHtml::listData($model, 'id', 'title');
+		
+		
+		if(is_numeric($n))
+			return $array[$n];
+		else
+			return $array;
 	}
 
 }

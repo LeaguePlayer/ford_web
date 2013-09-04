@@ -1,10 +1,10 @@
 <?php
 $this->breadcrumbs=array(
-	'Cars'=>array('index'),
+	'Partners'=>array('index'),
 	$model->title,
 );
 
-<h1>View Cars #<?php echo $model->id; ?></h1>
+<h1>View Partners #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
@@ -12,14 +12,7 @@ $this->breadcrumbs=array(
 		'id',
 		'title',
 		'image',
-		'price',
-		'video1',
-		'video2',
-		'video3',
-		'gallery',
-		'meta_title',
-		'meta_keys',
-		'meta_desc',
+		'link',
 		'status',
 		'sort',
 		'create_time',

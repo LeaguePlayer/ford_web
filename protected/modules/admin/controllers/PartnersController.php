@@ -1,19 +1,19 @@
 <?php
 
-class SliderController extends AdminController
+class PartnersController extends AdminController
 {
-	public function actionCreate($car=false)
+	public function actionCreate()
 	{
 		
 			
-		$model = new Slider;
+		$model = new Partners;
 		
-		if(isset($_POST['Slider']))
+		if(isset($_POST['Partners']))
 		{
-			$relationsSites = $_POST['Slider']['id_site'];
-			unset($_POST['Slider']['id_site']);
+			$relationsSites = $_POST['Partners']['id_site'];
+			unset($_POST['Partners']['id_site']);
 			
-			$model->attributes=$_POST['Slider'];
+			$model->attributes=$_POST['Partners'];
 			
 			
 			
@@ -21,23 +21,13 @@ class SliderController extends AdminController
 			{
 				if(empty($relationsSites)) $relationsSites=array(Yii::app()->user->currentSiteId);
 				$model->relationsSites($relationsSites, $model->getModelName());
-				$this->redirect(array('/admin/slider/list/'));
+				$this->redirect(array('/admin/partners/list/'));
 			}
 		}
 		
 		
 		
-		if(is_numeric($car))
-			{
-				$find_page = Cars::model()->findByPk($car);
-				if(is_object($find_page))
-				{
-					
-					$model->title = $find_page->title;
-					$model->link = "/car/{$find_page->id}";
-					$model->status = 1;
-				}
-			}
+	
 		
 		$this->render('create',array('model'=>$model));
 	}
@@ -48,9 +38,9 @@ class SliderController extends AdminController
 		
 		
 			
-		$model = Slider::model()->with( array('sites' => array('condition' => "id_site = :id_site and post_id = {$id}",'params'=>array(':id_site'=>Yii::app()->user->id_site))) )->findByPk($id);
+		$model = Partners::model()->with( array('sites' => array('condition' => "id_site = :id_site and post_id = {$id}",'params'=>array(':id_site'=>Yii::app()->user->id_site))) )->findByPk($id);
 		
-		if(!is_object($model)) $model = Slider::model()->findByPk($id);
+		if(!is_object($model)) $model = Partners::model()->findByPk($id);
 		// fnc::mpr($model->site->attributes);die();
 		
 		// проверяем может ли он редактировать
@@ -59,14 +49,14 @@ class SliderController extends AdminController
 			throw new CHttpException(404, 'Unable to find the requested object.');
 		// end
 		
-		if(isset($_POST['Slider']))
+		if(isset($_POST['Partners']))
 		{
-			$relationsSites = $_POST['Slider']['id_site'];
-			unset($_POST['Slider']['id_site']);
+			$relationsSites = $_POST['Partners']['id_site'];
+			unset($_POST['Partners']['id_site']);
 			
 			
 			
-			$model->attributes=$_POST['Slider'];
+			$model->attributes=$_POST['Partners'];
 			
 			
 			
@@ -75,7 +65,7 @@ class SliderController extends AdminController
 			if($model->save())
 			{
 				$model->relationsSites($relationsSites, $model->getModelName());
-				$this->redirect(array('/admin/slider/list/'));	
+				$this->redirect(array('/admin/partners/list/'));	
 			}
 		}
 		
@@ -96,7 +86,7 @@ class SliderController extends AdminController
 			echo $actual_values = implode(", ",$_POST['items']);
 			 
 			 
-				 $get_all_menus_for_this_site = Slider::model()->findAll(array('condition'=>"id in ({$actual_values})", 'order'=>'sort ASC'));
+				 $get_all_menus_for_this_site = Partners::model()->findAll(array('condition'=>"id in ({$actual_values})", 'order'=>'sort ASC'));
 			
 			 $a = CHtml::listData($get_all_menus_for_this_site, 'id', 'sort');
 			 $a = array_values($a);
@@ -106,7 +96,7 @@ class SliderController extends AdminController
 				$i = 0;
 				foreach ($_POST['items'] as $item) {
 					
-					$project = Slider::model()->findByPk($item);
+					$project = Partners::model()->findByPk($item);
 					$project->sort = $a[$i];
 					
 					if($project->update()) echo "OK";

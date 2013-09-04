@@ -27,9 +27,10 @@ class NewsController extends AdminController
 		
 		$model->id_type = $id_type;
 		
+		$data['cars'] = Cars::getCars();
 		
 		
-		$this->render('create',array('model'=>$model, 'id_type'=>$id_type,));
+		$this->render('create',array('model'=>$model, 'id_type'=>$id_type, 'data'=>$data));
 	}
 	
 	
@@ -70,10 +71,10 @@ class NewsController extends AdminController
 		}
 		
 		
+		$data['cars'] = Cars::getCars();
 		
 		
-		
-		$this->render('update',array('model'=>$model,'id_type'=>$model->id_type,));
+		$this->render('update',array('model'=>$model,'id_type'=>$model->id_type, 'data'=>$data));
 	}
 	
 	

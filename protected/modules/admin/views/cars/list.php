@@ -11,23 +11,24 @@ $this->menu=array(
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'type'=>TbHtml::GRID_TYPE_HOVER,
+	 'rowCssClassExpression'=>'"status_{$data->status}"',
 	'columns'=>array(
-		'name',
+		'title',
 		array(
 			'header'=>'Фото',
 			'type'=>'raw',
 			'value'=>'TbHtml::imageRounded($data->getThumb("small"))'
 		),
 		'price',
-		'meta_title',
-		'gallery',
+		
+		
 		array(
 			'name'=>'status',
 			'type'=>'raw',
 			'value'=>'Cars::getStatusAliases($data->status)',
 			'filter'=>array(Cars::getStatusAliases())
 		),
-		'sort',
+		
 		array(
 			'name'=>'create_time',
 			'type'=>'raw',
@@ -40,6 +41,27 @@ $this->menu=array(
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{add} {view} {update} {delete}',
+			'buttons'=>array
+                    (
+                       'add' => array
+                        (
+                            
+							'label'=>'<i class="icon-add-menu"></i>',
+							'options'=>array('title'=>"Добавить этот автомобиль в слайдер"),
+                            //'imageUrl'=>Yii::app()->request->baseUrl.'/media/images/cloud.png',
+                            'url'=>'Yii::app()->createUrl("/admin/slider/create", array("car"=>$data->id))',
+                        ),
+						'view' => array
+                        (
+                            
+							//'label'=>'<i class="icon-add-menu"></i>',
+							'options'=>array('target'=>"_blank"),
+                            //'imageUrl'=>Yii::app()->request->baseUrl.'/media/images/cloud.png',
+                            'url'=>'"/cars/{$data->id}"',
+                        ),
+                        
+                    ),
 		),
 	),
 )); ?>

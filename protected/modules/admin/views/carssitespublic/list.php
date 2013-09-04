@@ -1,27 +1,8 @@
 <?php
 $this->menu=array(
-	array('label'=>'Добавить','url'=>array('create')),
+	array('label'=>'Добавить','url'=>array("carssitespublic/create/id_category/{$id_category}")),
 );
 ?>
-
-<?php
-
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('hotels-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-?>
-
-
 
 <?php
     $str_js = "
@@ -35,14 +16,14 @@ $('.search-form form').submit(function(){
         
 		function sortGrid()
 		{
-			$('#slider-grid table.items tbody').sortable({
+			$('#carssitespublic-grid table.items tbody').sortable({
             forcePlaceholderSize: true,
             forceHelperSize: true,
             items: 'tr',
             update : function () {
-                serial = $('#slider-grid table.items tbody').sortable('serialize', {key: 'items[]', attribute: 'class'});
+                serial = $('#carssitespublic-grid table.items tbody').sortable('serialize', {key: 'items[]', attribute: 'class'});
                 $.ajax({
-                    'url': '" . $this->createUrl('//admin/slider/sort') . "',
+                    'url': '" . $this->createUrl('//admin/carssitespublic/sort') . "',
                     'type': 'post',
                     'data': serial,
                     'success': function(data){
@@ -62,29 +43,51 @@ $('.search-form form').submit(function(){
     Yii::app()->clientScript->registerScript('sortable-project', $str_js);
 ?>
 
-<h1>Управление <?php echo $model->translition(); ?></h1>
+<h1><?php echo $model->translition(); ?></h1>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'slider-grid',
+	'id'=>'carssitespublic-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'afterAjaxUpdate'=>'sortGrid',
-	 'rowCssClassExpression'=>'"status_{$data->status} items[]_{$data->id}"',
-	
+	'rowCssClassExpression'=>'"status_{$data->status} items[]_{$data->id}"',
 	'type'=>TbHtml::GRID_TYPE_HOVER,
 	'columns'=>array(
+	
 		array(
-			'header'=>'Фото',
+			'name'=>'id_car',
 			'type'=>'raw',
-			'value'=>'TbHtml::imageRounded($data->getThumb("small"))'
+			'value'=>'Cars::getCars($data->id_car)',
+			'filter'=>Cars::getCars()
 		),
-		'title',
-		'link',
+		
+		array(
+			'name'=>'id_complecations',
+			'type'=>'raw',
+			'value'=>'Carcomplecations::getForList($data->id_complecations)',
+			'filter'=>Carcomplecations::getForList()
+		),
+		
+		array(
+			'name'=>'id_akpp',
+			'type'=>'raw',
+			'value'=>'Carakpp::getForList($data->id_akpp)',
+			'filter'=>Carakpp::getForList()
+		),
+		
+		array(
+			'name'=>'id_body',
+			'type'=>'raw',
+			'value'=>'Carbody::getForList($data->id_body)',
+			'filter'=>Carbody::getForList()
+		),
+		'price',
+		
+	
 		array(
 			'name'=>'status',
 			'type'=>'raw',
-			'value'=>'Slider::getStatusAliases($data->status)',
-			'filter'=>Slider::getStatusAliases()
+			'value'=>'Carssitespublic::getStatusAliases($data->status)',
+			'filter'=>Carssitespublic::getStatusAliases()
 		),
 		
 		array(
@@ -99,6 +102,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{update} {delete}',
 		),
 	),
 )); ?>
