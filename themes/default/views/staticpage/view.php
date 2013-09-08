@@ -15,9 +15,9 @@
             <?=$model->html_content?>
             
             <? if( $show_interest ) { ?>
-                <? if( $model->id_car ) { ?>
+                <? if( $model->id_car!=0 ) { ?>
                     <div class="intrest">
-                        <h2>Заинтересовало предложение?</h2><a href="/cars/<?=$model->id_car?>" class="green_button">Перейти к предложению</a>
+                        <h2>Заинтересовало предложение?</h2><a href="/cars/view/car_model/<?=$model->id_car?>" class="green_button">Перейти к предложению</a>
                     </div>
                 <? } ?>
             <? } ?>

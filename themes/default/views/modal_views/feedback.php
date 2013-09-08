@@ -6,7 +6,7 @@
       echo CHtml::errorSummary($model, null, null, array('class'=>'alert alert-block alert-error'));
     }
      ?>
-                <form method="POST" action="/site/<?=$type?>" class="form">
+                <form method="POST" action="/site/<?=$type?><?=( is_numeric($_GET['id_car']) ? "/id_car/{$_GET['id_car']}" : "" )?>" class="form">
                     <div class="feedback-col left">
                         <h3 id="drive-header">Отправить заявку</h3>
                            <div class="row">
@@ -23,9 +23,7 @@
                             </div>
                             <div class="row">
                                 <label for="feed_comment">Комментарий</label>
-                                <textarea name="Orders[comment]" id="feed_comment" cols="30" rows="3">
-                                    <?=$model->comment?>
-                                </textarea>
+                                <textarea name="Orders[comment]" id="feed_comment" cols="30" rows="3"><?=$model->comment?></textarea>
                             </div>
                     </div>
                     <div class="feedback-col right">

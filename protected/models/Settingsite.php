@@ -39,8 +39,8 @@ class Settingsite extends EActiveRecord
 		return array(
 			array('email_main_admin, phone_code_city, rows_stock_in_main', 'required'),
 			array('rows_stock_in_main, status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
-			array('link_on_facebook, link_on_vk, link_on_twitter, link_on_webcam, email_main_admin, email_test_drive, email_feedback, email_strahovanie, email_service, email_credit, phone_code_city, phone_sales, phone_service, street, meta_title', 'length', 'max'=>255),
-			array('access_to_test_drive, meta_keys, meta_desc', 'safe'),
+			array('link_on_facebook, link_on_vk, link_on_twitter, link_on_webcam, email_main_admin, email_test_drive, email_feedback, email_strahovanie, email_service, email_credit, phone_code_city, phone_sales, phone_service, street, meta_title, email_buy, date_begin, title', 'length', 'max'=>255),
+			array('access_to_test_drive, meta_keys, meta_desc, video1, video2, image_map', 'safe'),
 			// The following rule is used by search().
 			array('id, link_on_facebook, link_on_vk, link_on_twitter, link_on_webcam, email_main_admin, email_test_drive, email_feedback, email_strahovanie, email_service, email_credit, phone_code_city, phone_sales, phone_service, street, access_to_test_drive, rows_stock_in_main, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);
@@ -68,6 +68,7 @@ class Settingsite extends EActiveRecord
 			'email_strahovanie' => 'Почта для получения заявок по страхованию',
 			'email_service' => 'Почта для получения заявок на сервис',
 			'email_credit' => 'Почта для получения заявок на кредит',
+			'email_buy' => 'Почта для получения заявок на покупку авто',
 			'phone_code_city' => 'Код города',
 			'phone_sales' => 'Телефон отдела продаж',
 			'phone_service' => 'Телефон сервисного обслуживания',
@@ -78,6 +79,11 @@ class Settingsite extends EActiveRecord
 			'sort' => 'Вес для сортировки',
 			'create_time' => 'Дата создания',
 			'update_time' => 'Дата последнего редактирования',
+			'video1'=>'Код видео с youtube о компании №1',
+			'video2'=>'Код видео с youtube о компании №2',
+			'date_begin'=>'Дата основания',
+			'title'=>'Название компании',
+			'image_map'=>'Карта расположения статическая',
 		);
 	}
 	

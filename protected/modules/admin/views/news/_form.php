@@ -10,6 +10,7 @@
 	
     <?php echo $form->dropDownListControlGroup($model, 'id_type', News::getCategories(), array('class'=>'span8', 'displaySize'=>1)); ?>
 
+    
 	<?php echo $form->textFieldControlGroup($model,'title',array('class'=>'span8','maxlength'=>255)); ?>
     
    

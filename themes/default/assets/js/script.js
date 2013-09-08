@@ -1,8 +1,133 @@
+function close_on_fancy()
+{
+	$('.ins-close').click(function(e) {
+        parent.jQuery.fancybox.close();
+		return false;
+    });	
+}
+
+function open_view()
+{
+	$('.car-list .car a').click(function(){
+		
+		$("#ajax_place").addClass('loading');
+		var ajax_place_height = $("#ajax_place").css('height');
+		$("#ajax_place").css('height',ajax_place_height);
+		$("#ajax_place").html('');
+		var href = $(this).attr('href');
+		
+		$.ajax({
+							   url: href,
+							 
+							  
+							  success: function(data) {
+								   $("#ajax_view").css('opacity',1);
+								 //alert(data);
+								
+								var a = $(data).css('opacity',0);
+								//alert(a);
+								 $("#ajax_view").html(a);
+								 var height_block = $("#ajax_view").height();
+								//alert(height_block);
+								 $("#ajax_view").animate({height: height_block}, 300,function(){
+									 $("#ajax_view *").css('opacity',1);
+										 
+								});
+								
+								
+								 $("#ajax_place").slideUp(500);
+								 $("html:not(:animated)"+( ! $.browser.opera ? ",body:not(:animated)" : "")).animate({scrollTop: 0},300);
+								open_list();
+								//$(window).scrollTop(0);
+							
+							  }
+				});
+		
+		return false;
+	});	
+}
+
+
+function open_list()
+{
+	$('.orange_button.choose').click(function(){
+		$("#ajax_place").addClass('loading');
+		//$("#ajax_place").css('height', '300px');
+		
+		
+			$('#ajax_view').html('');
+				$('#ajax_view').css('height','auto');
+		
+		
+		
+		var href = $(this).attr('href');
+		
+		$.ajax({
+							   url: href,
+							 
+							  
+							  success: function(data) {
+								  $("#ajax_place").show(0);
+								var a = $(data).css('opacity',0);
+								//alert(a);
+								 $("#ajax_place").html(a);
+								 var height_block = $("#ajax_place").height();
+							//	alert(height_block);
+								 $("#ajax_place").animate({height: height_block}, 300,function(){
+									 $("#ajax_place .car-list").css('opacity',1);
+									$("#ajax_place").removeClass('loading');	 
+								});
+								 
+								
+								
+								// $("#ajax_place").slideUp(500);
+								 $("html:not(:animated)"+( ! $.browser.opera ? ",body:not(:animated)" : "")).animate({scrollTop: 0},300);
+								open_view();
+								//$(window).scrollTop(0);
+							
+							  }
+				});
+		
+		return false;
+		});	
+}
 
 $(document).ready(function() {
+	
+	
+	open_view();
+	open_list();
+	
+	
+	
+	
 $("select").selectbox();
+
 	$(".fancybox").fancybox({
 		type: "ajax",
+		afterShow: function() {
+			//$this = $(this);
+			$("select").selectbox();
+			close_on_fancy();
+		},
+		padding: 0,
+		fitToView: false,
+	});
+	
+	$(".fancybox_up").fancybox({
+		type: "ajax",
+		afterShow: function() {
+			//$this = $(this);
+			$("select").selectbox();
+		
+		},
+		padding: 0,
+		fitToView: false,
+	});
+	
+	
+	$(".fancybox_image").fancybox({
+		
 		afterShow: function() {
 			//$this = $(this);
 			$("select").selectbox();
@@ -25,31 +150,7 @@ $("select").selectbox();
 	headShadow();
 
 
-	ymaps.ready(function () {
-		var myMap;
-		// Создание экземпляра карты и его привязка к созданному контейнеру.
-		ymaps.geocode('Тюмень, ул. Республики, 278 ', {
-            results: 1
-        }).then(function (res) {
-			var firstGeoObject = res.geoObjects.get(0);
-            myMap = new ymaps.Map("map_canvas", {
-				center: firstGeoObject.geometry.getCoordinates(),
-				zoom: 14,
-				behaviors: ['scrollZoom']
-			});
-
-        	// Создание метки
-			var myPlacemark = window.myPlacemark = new ymaps.Placemark(myMap.getCenter(), {}, {
-				iconImageHref: '/assets/img/marker.png',
-			    // Не скрываем иконку при открытом балуне.
-				// hideIconOnBalloonOpen: false,
-			    // И дополнительно смещаем балун, для открытия над иконкой.
-				// balloonOffset: [3, -30]
-			});
-
-			myMap.geoObjects.add(myPlacemark);
-        });
-	});
+	
 });
 
 

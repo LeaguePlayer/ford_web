@@ -85,3 +85,16 @@ form .line{
 {
 	background-color:#fff;	
 }
+.a_option
+{
+	display:block;
+	text-align:center;
+	height:50px;	
+	line-height:50px;
+	font-size:22px;
+}
+.a_option:hover
+{
+	text-decoration:none;
+	background:#eee;	
+}

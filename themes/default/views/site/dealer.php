@@ -27,25 +27,66 @@
 
 		<div class="paragraph about map fix_width">
 			<h2>МЫ ВСЕГДА РЯДОМ С НАШИМИ КЛИЕНТАМИ</h2>
+            <div id="for_center" style="height:1px;"></div>
 		</div>
 		<section class="map">
-			<div id="map">
-				<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/map-2.jpg" alt="" style="width: 1400px; height: 470px;">
-			</div>
+			<div id="map_baloon">
+			 	<img src="<?php echo $this->getAssetsUrl() ?>/img/ford-logo.png" style="display: inline-block; vertical-align: middle;">
+			 	<b><p style="display: inline-block; vertical-align: middle;"><?=$this->settings->street?></p></b>
+			 </div>
+			<div id="map"></div>
+            
+            <script type="text/javascript">
+            	$(document).ready(function(e) {
+						ymaps.ready(function () {
+						var myMap;
+						// Создание экземпляра карты и его привязка к созданному контейнеру.
+						ymaps.geocode('<?=$this->settings->street?>', {
+							results: 1
+						}).then(function (res) {
+							var firstGeoObject = res.geoObjects.get(0);
+							myMap = new ymaps.Map("map", {
+								center: firstGeoObject.geometry.getCoordinates(),
+								zoom: 16,
+								behaviors: ['drag']
+							});
+							
+							var baloon = $("#map_baloon").html();
+							
+							// Создание метки
+							var myPlacemark = window.myPlacemark = new ymaps.Placemark(myMap.getCenter(), {balloonContent: baloon}, {
+								iconImageHref: '<?php echo $this->getAssetsUrl() ?>/img/marker_big.png',
+								});
+				
+								// Не скрываем иконку при открытом балуне.
+								// hideIconOnBalloonOpen: false,
+								// И дополнительно смещаем балун, для открытия над иконкой.
+								// balloonOffset: [3, -30]
+				
+							myMap.geoObjects.add(myPlacemark);
+							myMap.controls.add('zoomControl');
+						});
+					});
+                });
+            </script>
 
 			<p class="address"><?=$this->settings->street?></p>
 			<p class="phones">Отдел продаж: (<?=$this->settings->phone_code_city?>) <?=$this->settings->phone_sales?> </p>
 			<p class="phones">Сервисный центр: (<?=$this->settings->phone_code_city?>) <?=$this->settings->phone_service?> </p>
 		</section>
 
-		<section class="partners fix_width">
-			<h3 class="header">
-				Наши партнеры
-			</h3>
-			<a href="#" class="partner nissan"></a>
-			<a href="#" class="partner toyota"></a>
-		</section>
 
+		<? if(count($data['partners']) > 0) { ?>
+            <section class="partners fix_width">
+                <h3 class="header">
+                    Наши партнеры
+                </h3>
+                    <? foreach($data['partners'] as $partner) { ?>
+                    	<? $link = ( empty($partner->link) ? "javascript:void(0);" : $partner->link ); ?>
+                        <a href="<?=$link?>" class="partner"><img src="<?=$partner->getThumb('medium')?>" alt=""></a>
+                    <? } ?>
+            </section>
+		<? } ?>
 		
 		<section class="site_map four">
 			<?=$this->renderPartial('/menu/list_menu',array('menu'=>$data['menu']))?>

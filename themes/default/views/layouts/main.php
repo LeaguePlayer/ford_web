@@ -18,6 +18,7 @@
 	
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.color.js', CClientScript::POS_END);
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.selectbox-0.2.min.js', CClientScript::POS_END);
+	$cs->registerScriptFile($this->getAssetsUrl().'/js/gallery.js', CClientScript::POS_END);
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/script.js', CClientScript::POS_END);
 	
 	
@@ -76,16 +77,7 @@
 					<h3><?=$this->about->title?></h3>
 					<div class="about">
 						<?=$this->about->html_content?>
-						<div class="video_block">
-							<div class="video">
-								<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/video-1.jpg" alt="" class="poster">
-								<a class="play" href="#"></a>
-							</div>
-							<div class="video">
-								<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/video-2.jpg" alt="" class="poster">
-								<a class="play" href="#"></a>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="col-2">
@@ -95,10 +87,13 @@
 					<h3>У Вас есть к нам вопросы?</h3>
 					<div class="contacts">
 						<a href="/site/feedback" class="callback_button fancybox">Связаться с нами</a>
-						<div class="map">
-							<div id="map_canvas"></div>
-							<a href="#" class="open">+</a>
-						</div>
+                        <? if( $this->settings->image_map ) { ?>
+                            <div class="stat_map">
+                                <a href="/dealer#for_center">
+                                    <?=$this->settings->image_map?>
+                                </a>
+                            </div>
+                        <? } ?>
 						<div class="address"><?=$this->settings->street?></div>
 						<ul class="phones">
 							<li>Отдел продаж: (<?=$this->settings->phone_code_city?>) <?=$this->settings->phone_sales?></li>
@@ -115,7 +110,7 @@
 		<div class="cintent fix_width">
 			<div class="ford_info">
 				<a href="/" class="fordlogo"><img src="<?php echo $this->getAssetsUrl() ?>/img/ford-logo.png" alt=""></a>
-				<p class="info">Автоград Гарант (2009-<?=date('Y')?>)</p>
+				<p class="info"><?=$this->settings->title?><br />(<?=$this->settings->date_begin?>-<?=date('Y')?>)</p>
 			</div>
 
 			<div class="middle">
@@ -128,7 +123,7 @@
 					</ul>
 				</div>
 				<div class="menu">
-					<a href="/cars" class="select">Выбери свой Ford</a>
+					<a href="/avtomobili" class="select">Выбери свой Ford</a>
 					<a href="/ya_vladelec_ford" class="for_bysines">Для владельцев</a>
 				</div>
 			</div>

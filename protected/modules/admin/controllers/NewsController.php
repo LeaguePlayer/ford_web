@@ -7,6 +7,7 @@ class NewsController extends AdminController
 		
 			
 		$model = new News;
+		$model->id_type = $id_type;
 		
 		if(isset($_POST['News']))
 		{
@@ -25,7 +26,7 @@ class NewsController extends AdminController
 			}
 		}
 		
-		$model->id_type = $id_type;
+		
 		
 		$data['cars'] = Cars::getCars();
 		

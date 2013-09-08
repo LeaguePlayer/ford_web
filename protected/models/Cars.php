@@ -33,7 +33,7 @@ class Cars extends EActiveRecord
 		return array(
 			array('title', 'required'),
 			array('price, gallery, status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
-			array('title, meta_title', 'length', 'max'=>255),
+			array('title, path, big_image, image_video1, image_video2, image_video3, meta_title, link', 'length', 'max'=>255),
 			array('video1, video2, video3, meta_keys, meta_desc', 'safe'),
 			// The following rule is used by search().
 			array('id, title, image, price, video1, video2, video3, gallery, meta_title, meta_keys, meta_desc, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
@@ -54,6 +54,7 @@ class Cars extends EActiveRecord
 			'id' => 'ID',
 			'title' => 'Название автомобиля',
 			'image' => 'Изображение автомобиля',
+			'big_image'=>'Изображение в ленте',
 			'price' => 'Выгода до',
 			'video1' => 'Видео №1 код с youtube',
 			'video2' => 'Видео №2 код с youtube',
@@ -66,6 +67,12 @@ class Cars extends EActiveRecord
 			'sort' => 'Вес для сортировки',
 			'create_time' => 'Дата создания',
 			'update_time' => 'Дата последнего редактирования',
+			'path'=>'PDF-брошюра',
+			'link'=>'Ссылка на официальный сайт на данную модель',
+			
+			'image_video1'=>'Заглушка изображение №1',
+			'image_video2'=>'Заглушка изображение №2',
+			'image_video3'=>'Заглушка изображение №3',
 		);
 	}
 	
@@ -75,12 +82,58 @@ class Cars extends EActiveRecord
 		return CMap::mergeArray(parent::behaviors(), array(
 			'UploadableImageBehavior' => array(
 				'class' => 'admin.behaviors.UploadableImageBehavior',
+				'attributeName'=>'image',
 				'versions' => array(
 					'small' => array(
 						'centeredpreview' => array(90, 90),
 					),
 					'medium' => array(
-						'resize' => array(600, 500),
+						'resize' => array(238, 233),
+					)
+				),
+			),
+			'promo1' => array(
+				'class' => 'admin.behaviors.UploadableImageBehavior',
+				'attributeName'=>'image_video1',
+				'versions' => array(
+					'small' => array(
+						'centeredpreview' => array(294, 140),
+					),
+					
+				),
+			),
+			
+			'promo2' => array(
+				'class' => 'admin.behaviors.UploadableImageBehavior',
+				'attributeName'=>'image_video2',
+				'versions' => array(
+					'small' => array(
+						'centeredpreview' => array(294, 140),
+					),
+					
+				),
+			),
+			
+			'promo3' => array(
+				'class' => 'admin.behaviors.UploadableImageBehavior',
+				'attributeName'=>'image_video3',
+				'versions' => array(
+					'small' => array(
+						'centeredpreview' => array(294, 140),
+					),
+					
+				),
+			),
+			
+			'big_image_im' => array(
+				'class' => 'admin.behaviors.UploadableImageBehavior',
+				'attributeName'=>'big_image',
+				'versions' => array(
+					'small' => array(
+						'centeredpreview' => array(200, 90),
+					),
+					'medium' => array(
+						'centeredpreview' => array(1280, 423),
 					)
 				),
 			),
@@ -89,10 +142,10 @@ class Cars extends EActiveRecord
 				'idAttribute' => 'gallery',
 				'versions' => array(
 					'small' => array(
-						'adaptiveResize' => array(90, 90),
+						'adaptiveResize' => array(121, 69),
 					),
 					'medium' => array(
-						'resize' => array(600, 500),
+						'resize' => array(800, 700),
 					)
 				),
 				'name' => true,
@@ -150,12 +203,23 @@ class Cars extends EActiveRecord
 		
 		
 		$array = CHtml::listData($model, 'id', 'title');
-		
-		
+		$array[0] = "Не привязывать автомобиль";
+		ksort($array);
 		if(is_numeric($n))
 			return $array[$n];
 		else
 			return $array;
 	}
+	
+	
+	public static function getCar($id)
+	{
+		
+		$model = self::model()->findByPk($id,"t.status=1");	
+		
+		
+		return $model;
+	}
+	
 
 }

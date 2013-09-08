@@ -1,7 +1,7 @@
 <div class="content fix_width">
 				<div class="scol-1">
 					<div class="divide">
-						<a href="/cars/" class="head">Легковые автомобили</a>
+						<a href="/avtomobili" class="head">Легковые автомобили</a>
 						<?
 						 	if( count($menu[1]) > 0 )
 							{
@@ -12,13 +12,13 @@
 							}
 						?>
                         </div>
-                        	<a href="#" class="head">Автомобили в наличии</a>
+                        	<a href="/avtomobili-v-nalichii" class="head">Автомобили в наличии</a>
                         
 					
 				</div>
 				<div class="scol-2">
 					
-					<a href="#" class="head">Коммерческие автомобили</a>
+					<a href="/kommercheskie-avtomobili" class="head">Коммерческие автомобили</a>
 					<?
 						 	if( count($menu[3]) > 0 )
 							{
@@ -32,7 +32,7 @@
 				</div>
 				<div class="scol-3">
 					<div class="divide">
-						<a href="#" class="head">Гид покупателя</a>
+						<a class="head">Гид покупателя</a>
 						<?
 						 	if( count($menu[7]) > 0 )
 							{
@@ -68,7 +68,7 @@
 							}
 						?>
 					</div>
-					<a href="#" class="head">О FORD</a>
+					<a class="head">О FORD</a>
 					<?
 						 	if( count($menu[6]) > 0 )
 							{

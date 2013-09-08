@@ -7,10 +7,10 @@
           echo CHtml::errorSummary($model, null, null, array('class'=>'alert alert-block alert-error'));
         }
      ?>
-                <form method="POST" action="/site/testdrive" class="form">
+                <form method="POST" action="/site/testdrive<?=( is_numeric($car) ? "/car/{$car}" : "" )?>" class="form">
                     <div class="drive-col left">
                         <h3 id="drive-header">Запись на тест-драйв</h3>
-                            <? if( count($this->settings->access_to_test_drive) > 0 ) { ?>
+                            <? if( count($this->settings->access_to_test_drive) > 0 and !is_numeric($car) ) { ?>
                                 <div class="row">
                                     <label for="select1">Выбранная модель</label>
                                     <select name="data[car]" id="input1" class="sel">
@@ -43,9 +43,7 @@
                         <p class="comment">
                             Комментарий
                             </p>
-                            <textarea name="data[comment]" id="comment" cols="30" rows="4">
-                                <?=$model->comment?>
-                            </textarea>
+                            <textarea name="data[comment]" id="comment" cols="30" rows="4"><?=$model->comment?></textarea>
                     </div>
                     <div class="button-row">
                         <div class="write">

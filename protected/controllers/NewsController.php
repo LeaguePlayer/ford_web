@@ -126,7 +126,7 @@ class NewsController extends Controller
 					
 				
 			
-		
+				
 				
 				
 				$this->render('list',array('data'=>$data));

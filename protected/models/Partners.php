@@ -64,7 +64,7 @@ class Partners extends EActiveRecord
 				'class' => 'admin.behaviors.UploadableImageBehavior',
 				'versions' => array(
 					'small' => array(
-						'centeredpreview' => array(90, 90),
+						'resize' => array(90, 90),
 					),
 					'medium' => array(
 						'resize' => array(101, 87),

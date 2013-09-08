@@ -56,22 +56,26 @@ function deleteRow()
 	
 	
 	
-	$('.results a').click(function(){
-		var type = $(this).parents('.results').next().find('#data_type').val();
-		var link_a = $(this).attr('href');
+	$('.results a.del_b').click(function(){
+		if (confirm("Уточно удалить?")) {
+		  var type = $(this).parents('.results').next().find('#data_type').val();
+			var link_a = $(this).attr('href');
+			
+			var result_obj = $(this).parents('.results');
+			
+					$.ajax({
+						  url: link_a,
+						  type: "POST",
+						  data: "data[type]="+type,
+						  
+						  success: function(data) {
+							$(result_obj).html(data);
+							deleteRow();
+						  }
+						}); 
+		}
+
 		
-		var result_obj = $(this).parents('.results');
-		
-				$.ajax({
-					  url: link_a,
-					  type: "POST",
-					  data: "data[type]="+type,
-					  
-					  success: function(data) {
-						$(result_obj).html(data);
-						deleteRow();
-					  }
-					}); 
 		
 		return false;
 	});	
@@ -79,6 +83,15 @@ function deleteRow()
 
 $(document).ready(function(e) {
 	deleteRow();
+	
+	$('.options_b').fancybox({
+		type: 'iframe',
+		
+		
+		width:650,
+		//padding: 20,
+		//fitToView: false,
+	});
 	
 	if($('#new_record').is('div'))
 	{
@@ -142,7 +155,7 @@ $(document).ready(function(e) {
 			$("form").find('select').selectbox();
 			
 		},
-		
+		arrows: false,
 		padding: 20,
 		fitToView: false,
 	});

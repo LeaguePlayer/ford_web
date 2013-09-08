@@ -1,30 +1,17 @@
-<div class="car">
-		<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/ford1.png" alt="">
-		<p class="car-name">Ford Focus</p>
-		<p class="car-price">1 050 000 Руб.</p>
-	</div>
-	<div class="car">
-		<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/ford2.png" alt="">
-		<p class="car-name">Ford Focus</p>
-		<p class="car-price">1 050 000 Руб.</p>
-	</div>
-	<div class="car">
-		<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/ford3.png" alt="">
-		<p class="car-name">Ford Focus</p>
-		<p class="car-price">1 050 000 Руб.</p>
-	</div>
-	<div class="car">
-		<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/ford4.png" alt="">
-		<p class="car-name">Ford Focus</p>
-		<p class="car-price">1 050 000 Руб.</p>
-	</div>
-	<div class="car">
-		<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/ford5.png" alt="">
-		<p class="car-name">Ford Focus</p>
-		<p class="car-price">1 050 000 Руб.</p>
-	</div>
-	<div class="car">
-		<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/ford6.png" alt="">
-		<p class="car-name">Ford Focus</p>
-		<p class="car-price">1 050 000 Руб.</p>
-	</div>
+ <? if( count($cars) > 0 ) { ?>
+     <section class="car-list fix_width">
+                <h2 class="list_header">Выбери свой FORD!</h2>
+                
+                <? foreach ( $cars as $car ) { ?>
+                    <div class="car">
+                        <a href="/cars/view/car_model/<?=$car->id?>"></a>
+                        <div class="background">
+                        	<div style="background-image:url('<?=$car->car->getThumb('medium')?>')"></div>
+                            
+                        </div>
+                        <p class="car-name"><?=$car->car->title?></p>
+                        <p class="car-price"> От <?=fnc::priceFormat($car->price)?> Руб.</p>
+                    </div>
+                <? } ?>
+    </section>
+<? } ?>

@@ -12,6 +12,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
 	
     <?php echo $form->dropDownListControlGroup($model, 'id_complecations', $data['complecations'], array('class'=>'span8', 'displaySize'=>1)); ?>
+    <?php echo $form->dropDownListControlGroup($model, 'id_engine', $data['engine'], array('class'=>'span8', 'displaySize'=>1)); ?>
     <?php echo $form->dropDownListControlGroup($model, 'id_akpp', $data['akpp'], array('class'=>'span8', 'displaySize'=>1)); ?>
     <?php echo $form->dropDownListControlGroup($model, 'id_body', $data['body'], array('class'=>'span8', 'displaySize'=>1)); ?>
 	

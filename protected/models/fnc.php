@@ -543,7 +543,17 @@ if(is_object($model))
 			
 		}	
 
-	
+	public static function priceFormat($price, $currency = null)
+   {
+       $string = "$price";
+       $len = strlen($string);
+       $result = "";
+       for ($i = 1; $i <= $len; $i++) {
+           $result.=$string[$len-$i];
+           if ($i%3 == 0) $result.=" ";
+       }
+       return strrev($result);
+   }
     
 }
 ?>

@@ -69,6 +69,7 @@ $('.search-form form').submit(function(){
 			'dataProvider'=>$model->search(),
 			'filter'=>$model,
 			'afterAjaxUpdate'=>'sortGrid',
+			 
 			 'rowCssClassExpression'=>'"status_{$data->status} items[]_{$data->id}"',
 			 
 			'type'=>TbHtml::GRID_TYPE_HOVER,
@@ -124,7 +125,7 @@ $('.search-form form').submit(function(){
 			'dataProvider'=>$model->search(),
 			'filter'=>$model,
 			'afterAjaxUpdate'=>'sortGrid',
-			 'rowCssClassExpression'=>'"items[]_{$data->id}"',
+			 'rowCssClassExpression'=>'"status_{$data->status} items[]_{$data->id}"',
 			'type'=>TbHtml::GRID_TYPE_HOVER,
 			'columns'=>array(
 				

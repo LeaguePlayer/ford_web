@@ -32,6 +32,7 @@ class CarssitespublicController extends AdminController
 		$data['complecations'][0] = "Не выбрана категория";
 		$data['akpp'][0] = "Не выбрана категория";
 		$data['body'][0] = "Не выбрана категория";
+		$data['engine'][0] = "Не выбрана категория";
 		
 		$this->render('create',array('model'=>$model, 'id_category'=>$id_category, 'data'=>$data));
 	}
@@ -98,6 +99,17 @@ class CarssitespublicController extends AdminController
 				$data['body']=CHtml::listData($model_c,'id','title');
 			$data['body'][0] = "Не выбрана категория";
 			ksort($data['body']);
+			
+			
+			$model_d=Engine::model()->findAll('id_car=:parent_id',array(':parent_id'=>$model->id_car));
+			if( count($model_d) == 0) 
+			{
+				$data['engine']=array("Не выбрана категория");
+			}
+			else
+				$data['engine']=CHtml::listData($model_d,'id','title');
+			$data['engine'][0] = "Не выбрана категория";
+			ksort($data['engine']);
 			
 			
 		
@@ -168,11 +180,12 @@ class CarssitespublicController extends AdminController
 	{
 		if($param and Yii::app()->request->isAjaxRequest)
 		{
-			
+			$param = false;
 			switch($_POST['data']['type'])
 			{
 				case 'complectations':
 					$data = Carcomplecations::getComplectations($_POST['data']['id_car']);
+					$param = true;
 				break;	
 				case 'akpp':
 					$data = Carakpp::getAkpp($_POST['data']['id_car']);
@@ -180,17 +193,20 @@ class CarssitespublicController extends AdminController
 				case 'body':
 					$data = Carbody::getBody($_POST['data']['id_car']);
 				break;	
+				case 'engine':
+					$data = Engine::getEngine($_POST['data']['id_car']);
+				break;
 			}
 			
 			
 			
-			echo $this->renderPartial('/cars/_parts',array('data'=>$data));
+			echo $this->renderPartial('/cars/_parts',array('data'=>$data, 'edit'=>$param));
 			return true;
 		}
 		
 		if(is_numeric($id) and isset($_POST['data']['type']) and Yii::app()->request->isAjaxRequest)
 		{
-			
+			$param = false;
 			switch($_POST['data']['type'])
 			{
 				case 'complectations':
@@ -202,8 +218,10 @@ class CarssitespublicController extends AdminController
 				break;	
 				case 'body':	
 					$model = Carbody::model()->findByPk($id);
-					
 				break;	
+				case 'engine':
+					$model = Engine::model()->findByPk($id);
+				break;
 			}
 			$id_car = $model->id_car;
 			$model->delete();
@@ -213,6 +231,7 @@ class CarssitespublicController extends AdminController
 			{
 				case 'complectations':
 					$data = Carcomplecations::getComplectations($id_car);
+					$param =true;
 				break;	
 				case 'akpp':
 					$data = Carakpp::getAkpp($id_car);
@@ -220,11 +239,14 @@ class CarssitespublicController extends AdminController
 				case 'body':
 					$data = Carbody::getBody($id_car);
 				break;	
+				case 'engine':
+					$data = Engine::getEngine($id_car);
+				break;
 			}
 			
 			
 			//$data['complectations'] = Carcomplecations::getComplectations($id_car);
-			echo $this->renderPartial('/cars/_parts',array('data'=>$data));
+			echo $this->renderPartial('/cars/_parts',array('data'=>$data, 'edit'=>$param));
 			
 			
 			return true;
@@ -248,8 +270,10 @@ class CarssitespublicController extends AdminController
 				break;	
 				case 'body':	
 					$model = new Carbody;
-					
 				break;	
+				case 'engine':
+					$model = new Engine;
+				break;
 			}
 			
 			
@@ -279,6 +303,9 @@ class CarssitespublicController extends AdminController
 				break;	
 				case 'body':
 					$data=Carbody::model()->findAll('id_car=:parent_id',array(':parent_id'=>(int) $_POST['data']['id_car']));
+				break;	
+				case 'engine':
+					$data=Engine::model()->findAll('id_car=:parent_id',array(':parent_id'=>(int) $_POST['data']['id_car']));
 				break;	
 			}
 			

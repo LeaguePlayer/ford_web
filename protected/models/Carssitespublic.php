@@ -24,7 +24,7 @@ class Carssitespublic extends EActiveRecord
 	public function rules()
 	{
 		return array(
-			array('id_car, id_site, id_category, price, status, sort, create_time, id_complecations, id_akpp, id_body, update_time', 'numerical', 'integerOnly'=>true),
+			array('id_car, id_site, id_engine, id_category, price, status, sort, create_time, id_complecations, id_akpp, id_body, update_time', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			array('id, id_car, id_site, id_category, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);
@@ -34,6 +34,11 @@ class Carssitespublic extends EActiveRecord
 	public function relations()
 	{
 		return array(
+			'car' => array(self::HAS_ONE, 'Cars', '', 'on'=>'t.id_car = car.id'),
+			'complectation' => array(self::HAS_ONE, 'Carcomplecations', '', 'on'=>'t.id_complecations = complectation.id'),
+			'akpp' => array(self::HAS_ONE, 'Carakpp', '', 'on'=>'t.id_akpp = akpp.id'),
+			'body' => array(self::HAS_ONE, 'Carbody', '', 'on'=>'t.id_body = body.id'),
+			'engine' => array(self::HAS_ONE, 'Engine', '', 'on'=>'t.id_engine = engine.id'),
 		);
 	}
 
@@ -54,6 +59,7 @@ class Carssitespublic extends EActiveRecord
 			'id_akpp' => 'Коробка передач',
 			'id_body' => 'Кузов',
 			'price'=>'Стоимость',
+			'id_engine'=>'Мощность двигателя',
 		);
 	}
 	
@@ -117,6 +123,24 @@ class Carssitespublic extends EActiveRecord
 		
 		
 		return true;
+	}
+	
+	
+	public static function getAvailCars($id_category)
+	{
+		
+		$model = self::model()->with('car')->findAll(array('condition'=>'t.status=1 and car.big_image!="" and image!="" and id_site = :id_site and id_category = :id_category','order'=>'t.sort ASC', 'select'=>'*,min(t.price) as price', 'group'=>'id_car', 'params'=>array(':id_site'=>Yii::app()->controller->id_site, ':id_category'=>$id_category)));	
+		
+		
+		
+		return $model;
+	}
+	
+	public static function getComplectationsByCar($id)
+	{
+		$models = self::model()->with('complectation','akpp','body','engine')->findAll(array( 'condition'=>'t.id_car=:id_car and t.status=1 and t.id_site=:id_site', 'order'=>'t.sort ASC', 'params'=>array( ':id_car'=>$id, ':id_site'=>Yii::app()->controller->id_site ) ));
+		
+		return $models;	
 	}
 
 }

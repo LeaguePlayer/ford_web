@@ -71,7 +71,7 @@ class Controller extends CController
 		$this->top_buttons[0]['link'] = "/ya_vladelec_ford";
 		$this->top_buttons[0]['text'] = "Я владелец Ford";
 		
-		$this->top_buttons[1]['link'] = "/cars";
+		$this->top_buttons[1]['link'] = "/avtomobili";
 		$this->top_buttons[1]['text'] = "Подобрать себе Ford";
 		
 		$this->top_buttons[2]['link'] = "/dealer";

@@ -4,6 +4,10 @@
 )); ?>
 
 <?php echo $form->errorSummary($model);?>
+	
+    <?php echo $form->textFieldControlGroup($model,'title',array('class'=>'span8','maxlength'=>255)); ?>
+    
+    <?php echo $form->textFieldControlGroup($model,'date_begin',array('class'=>'span8','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'link_on_facebook',array('class'=>'span8','maxlength'=>255)); ?>
 
@@ -24,6 +28,8 @@
 	<?php echo $form->textFieldControlGroup($model,'email_service',array('class'=>'span8','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'email_credit',array('class'=>'span8','maxlength'=>255)); ?>
+    
+    <?php echo $form->textFieldControlGroup($model,'email_buy',array('class'=>'span8','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'phone_code_city',array('class'=>'span8','maxlength'=>255)); ?>
 
@@ -32,10 +38,16 @@
 	<?php echo $form->textFieldControlGroup($model,'phone_service',array('class'=>'span8','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'street',array('class'=>'span8','maxlength'=>255)); ?>
+    
+     <?php echo $form->textAreaControlGroup($model,'image_map',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
 	<?php echo $form->textAreaControlGroup($model,'access_to_test_drive',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'rows_stock_in_main',array('class'=>'span8')); ?>
+    
+    <?php echo $form->textAreaControlGroup($model,'video1',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
+    
+    <?php echo $form->textAreaControlGroup($model,'video2',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', SettingSite::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
     

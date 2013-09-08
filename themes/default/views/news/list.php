@@ -1,7 +1,7 @@
 <div id="content">
 
 <? if( $data['id_type'] == 1 ) { ?>
-	<? if( count($data['super_stock'] > 0) ) { ?>
+	<? if( count($data['super_stock']) > 0 ) { ?>
         <section class="ford_first fix_width">
             	<?=$this->renderPartial('_super_stock_in_list',array('stock'=>$data['super_stock']))?>
         </section>

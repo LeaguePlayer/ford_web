@@ -33,7 +33,7 @@ class CarsController extends AdminController
 		$data['complectations'] = Carcomplecations::getComplectations($model->id);
 		$data['akpp'] = Carakpp::getAkpp($model->id);
 		$data['body'] = Carbody::getBody($model->id);
-		
+		$data['engine'] = Engine::getEngine($model->id);
 		
 		$this->render('update',array('model'=>$model, 'data'=>$data));
 	}
