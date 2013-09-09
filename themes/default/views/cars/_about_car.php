@@ -17,7 +17,7 @@
              <? if( $data['car_menu']->video2 ) { ?>
                      <div class="video_div">
                         <?
-                            $url = ( !empty($data['car_menu']->image_video2)  ? $data['car_menu']->promo21->getThumb('small') : "{$this->getAssetsUrl()}/img/tmp/ford_video2.jpg" );
+                            $url = ( !empty($data['car_menu']->image_video2)  ? $data['car_menu']->promo2->getThumb('small') : "{$this->getAssetsUrl()}/img/tmp/ford_video2.jpg" );
                             $image = "<img src='{$url}' alt=''>";
                         ?>
                         <a href="/site/video/car/<?=$data['car_menu']->id?>/position/2" class="fancybox"></a>
