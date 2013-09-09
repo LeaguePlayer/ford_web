@@ -39,6 +39,17 @@ function getParams(){
 				});
 				
 				$.ajax({
+							   url: '/admin/carssitespublic/addparams/type/engine',
+							  type: "POST",
+							  data: "data[id_car]="+id_car,
+							  
+							  success: function(data) {
+							//	  alert(data);
+								$('#Carssitespublic_id_engine').html(data);
+							  }
+				});
+				
+				$.ajax({
 							   url: '/admin/carssitespublic/addparams/type/body',
 							  type: "POST",
 							  data: "data[id_car]="+id_car,
