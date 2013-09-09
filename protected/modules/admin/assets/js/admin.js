@@ -92,7 +92,40 @@ function deleteRow()
 	});	
 }
 
+
+// функция изменяет наличие авто - по сути показывать в разделе автомобили в наличие или нет. 
+// отрабатывает на представлении /carssitespublic/list.php
+function editAvailNow()
+{
+	var gotVal = $(this).attr('rel');
+	var data = "";
+	
+	if( $(this).is(':checked') )
+	{
+		data = "data[avail_now]=1&data[id]="+gotVal;
+	}
+	else
+	{
+		data = "data[avail_now]=0&data[id]="+gotVal;
+	}	
+	
+	
+	$.ajax({
+							   url: '/admin/carssitespublic/editavail',
+							  type: "POST",
+							  data: data,
+							  
+				});
+	
+}
+
 $(document).ready(function(e) {
+	
+	
+	$('.avail_now').click( editAvailNow );
+	
+	
+	
 	deleteRow();
 	
 	$('.options_b').fancybox({

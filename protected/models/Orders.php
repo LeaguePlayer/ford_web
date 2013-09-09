@@ -147,6 +147,7 @@ class Orders extends EActiveRecord
 							'Страхование',
 							'Кредит',
 							'Покупка авто',
+							'Сервис',
 		);
 		
 		

@@ -29,7 +29,7 @@
 							}
 						?>
 					</div>
-					<a href="#" class="head">Корпоративным клиентам</a>
+					<a href="/korporativnym-klientam" class="head">Корпоративным клиентам</a>
 				</div>
 				<div class="col-3">
 					<div class="divide">

@@ -39,38 +39,44 @@ class CarsController extends Controller
 	}
 	
 	
-	public function actionView($car_model)
+	public function actionView($id_car,$avail_now=false)
 	{
-			$public_car_site = Carssitespublic::model()->findByPk($car_model);
 			
-			if(is_object($public_car_site))
+			$car = Cars::getCar($id_car);
+			
+			if(is_object($car))
 			{
+				if($avail_now and $avail_now=="yes") $avail_now = true; // смотрим, есть ли якорь - если да, то будем показывать авто только те, что в наличии 
+				
 				$news_stocks = new News;
 				$menu = new Menu;
 				//$stuff = new Stuff;
-		
-				$car = Cars::getCar($public_car_site->id_car);
+				$public_car_site = Carssitespublic::model()->find("id_car=$id_car");
+				
 				$data['menu'] = $menu->getMenu();
 				//$data['stuff'] = $stuff->getStuff();
-				$data['complectations'] = Carssitespublic::getComplectationsByCar($car->id);
+				$data['complectations'] = Carssitespublic::getComplectationsByCar($car->id, $avail_now);
 				
 				$data['options'] = Complectationvalues::getOptions($car->id);
 				
 				$data['car_menu'] = $car; 
 				fnc::registredSEO($car);
 				
-				switch($public_car_site->id_category)
+				if($avail_now) $value = "avtomobili-v-nalichii";
+				else
 				{
-					case 1:
-						$value = "avtomobili";
-					break;	
-					case 2:
-						$value = "avtomobili-v-nalichii";
-					break;	
-					case 3:
-						$value = "kommercheskie-avtomobili";
-					break;	
+					switch($public_car_site->id_category)
+					{
+						case 1:
+							$value = "avtomobili";
+						break;	
+						
+						case 3:
+							$value = "kommercheskie-avtomobili";
+						break;	
+					}
 				}
+				
 				$data['return_link'] = "/{$value}";
 				
 				

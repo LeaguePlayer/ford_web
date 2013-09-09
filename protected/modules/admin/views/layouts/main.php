@@ -29,7 +29,7 @@
 				array('label'=>'Публикация автомобилей', 'url'=>'#', 'items' => array(
 					
 					array('label'=>'Автомобили', 'url'=>"/admin/carssitespublic/list/id_category/1"),
-					array('label'=>'Автомобили в наличии', 'url'=>"/admin/carssitespublic/list/id_category/2"),
+					//array('label'=>'Автомобили в наличии', 'url'=>"/admin/carssitespublic/list/id_category/2"),
 					array('label'=>'Комерческие автомобили', 'url'=>"/admin/carssitespublic/list/id_category/3"),
 				)),
 				array('label'=>'Разделы', 'url'=>'#', 'items' => array(

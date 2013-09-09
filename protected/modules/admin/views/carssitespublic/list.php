@@ -82,6 +82,14 @@ $this->menu=array(
 		),
 		'price',
 		
+		array(
+       
+			'name'=>'avail_now',
+            'type'=>'raw',
+            'value' => 'CHtml::activeCheckBox($data,"avail_now", array("rel"=>$data->id, "class"=>"avail_now", "questionIfCheck"=>"Добавить автомобиль в налчиние?", "questionIfNotCheck"=>"Убрать автомобиль из наличия?"))',
+            'filter' => array(1 => 'Да', 0 => 'Нет'),
+        ),
+		
 	
 		array(
 			'name'=>'status',

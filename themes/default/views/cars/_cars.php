@@ -4,7 +4,7 @@
                 
                 <? foreach ( $cars as $car ) { ?>
                     <div class="car">
-                        <a href="/cars/view/car_model/<?=$car->id?>"></a>
+                        <a href="/cars/view/id_car/<?=$car->id_car?><?=($avail_now ? "/avail_now/yes" : "")?>"></a>
                         <div class="background">
                         	<div style="background-image:url('<?=$car->car->getThumb('medium')?>')"></div>
                             

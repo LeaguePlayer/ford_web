@@ -15,6 +15,8 @@
  */
 class Carssitespublic extends EActiveRecord
 {
+	public $sync;
+	
 	public function tableName()
 	{
 		return '{{cars_sites_public}}';
@@ -24,9 +26,9 @@ class Carssitespublic extends EActiveRecord
 	public function rules()
 	{
 		return array(
-			array('id_car, id_site, id_engine, id_category, price, status, sort, create_time, id_complecations, id_akpp, id_body, update_time', 'numerical', 'integerOnly'=>true),
+			array('id_car, id_site, id_engine, id_category, avail_now, price, status, sort, create_time, id_complecations, id_akpp, id_body, update_time', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
-			array('id, id_car, id_site, id_category, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, id_car, id_site, avail_now, id_category, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,12 +56,13 @@ class Carssitespublic extends EActiveRecord
 			'sort' => 'Вес для сортировки',
 			'create_time' => 'Дата создания',
 			'update_time' => 'Дата последнего редактирования',
-			
+			'avail_now'=>'В салоне есть в наличии',
 			'id_complecations' => 'Комплектация',
 			'id_akpp' => 'Коробка передач',
 			'id_body' => 'Кузов',
 			'price'=>'Стоимость',
 			'id_engine'=>'Мощность двигателя',
+			'sync'=>'Создать запись для всех сайтов',
 		);
 	}
 	
@@ -82,6 +85,7 @@ class Carssitespublic extends EActiveRecord
 		$criteria->compare('id_akpp',$this->id_akpp);
 		$criteria->compare('id_body',$this->id_body);
 		$criteria->compare('price',$this->price);
+		$criteria->compare('avail_now',$this->avail_now);
 		
 		$id = Yii::app()->controller->currentSiteId;
 		$criteria->addCondition("id_site = {$id}");
@@ -128,17 +132,25 @@ class Carssitespublic extends EActiveRecord
 	
 	public static function getAvailCars($id_category)
 	{
+		$avail_now = "0, 1";
+		if($id_category==2)
+		{
+				$id_category = "1,3";
+				$avail_now = "1";
+		}
 		
-		$model = self::model()->with('car')->findAll(array('condition'=>'t.status=1 and car.big_image!="" and image!="" and id_site = :id_site and id_category = :id_category','order'=>'t.sort ASC', 'select'=>'*,min(t.price) as price', 'group'=>'id_car', 'params'=>array(':id_site'=>Yii::app()->controller->id_site, ':id_category'=>$id_category)));	
+		$model = self::model()->with('car')->findAll(array('condition'=>'t.status=1 and car.big_image!="" and image!="" and id_site = :id_site and id_category in (:id_category) and avail_now in (:avail_now)','order'=>'t.price ASC', 'select'=>'*,min(t.price) as price', 'group'=>'id_car', 'params'=>array(':id_site'=>Yii::app()->controller->id_site, ':id_category'=>$id_category, ':avail_now'=>$avail_now)));	
 		
 		
 		
 		return $model;
 	}
 	
-	public static function getComplectationsByCar($id)
+	public static function getComplectationsByCar($id, $avail_now=false)
 	{
-		$models = self::model()->with('complectation','akpp','body','engine')->findAll(array( 'condition'=>'t.id_car=:id_car and t.status=1 and t.id_site=:id_site', 'order'=>'t.sort ASC', 'params'=>array( ':id_car'=>$id, ':id_site'=>Yii::app()->controller->id_site ) ));
+		if($avail_now) $ADD_QUERY = "and avail_now = 1";
+		
+		$models = self::model()->with('complectation','akpp','body','engine')->findAll(array( 'condition'=>"t.id_car=:id_car and t.status=1 and t.id_site=:id_site {$ADD_QUERY}", 'order'=>'t.sort ASC', 'params'=>array( ':id_car'=>$id, ':id_site'=>Yii::app()->controller->id_site ) ));
 		
 		return $models;	
 	}

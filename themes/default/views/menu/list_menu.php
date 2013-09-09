@@ -22,7 +22,7 @@
 					<?
 						 	if( count($menu[3]) > 0 )
 							{
-								foreach ( $menu[1] as $object_menu )
+								foreach ( $menu[3] as $object_menu )
 								{
 									echo "<a href='{$object_menu[link]}'>{$object_menu[title]}</a>";
 								}
@@ -43,7 +43,7 @@
 							}
 						?>
 					</div>
-					<a href="#" class="head">Корпоративным
+					<a href="/korporativnym-klientam" class="head">Корпоративным
 клиентам</a>
 					<?
 						 	if( count($menu[4]) > 0 )

@@ -18,6 +18,17 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	
     
     <?php echo $form->textFieldControlGroup($model,'price',array('class'=>'span8','maxlength'=>255)); ?>
+    
+    <?php echo $form->dropDownListControlGroup($model, 'avail_now', fnc::returnYesNo(), array('class'=>'span8', 'displaySize'=>1)); ?>
+    
+    <?php 
+		if($model->isNewRecord and Yii::app()->user->id_site==0 )
+		{
+			
+			echo $form->dropDownListControlGroup($model, 'sync', fnc::returnYesNo(), array('class'=>'span8', 'displaySize'=>1));
+		}
+		
+	 ?>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Carssitespublic::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
 	<div class="form-actions">

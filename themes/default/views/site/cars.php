@@ -2,7 +2,7 @@
 
        <div id="ajax_place">
 			<? if( !isset($data['car_menu']) ) { ?>
-                <?=$this->renderPartial('/cars/_cars',array('cars'=>$data['avail_cars']))?>
+                <?=$this->renderPartial('/cars/_cars',array('cars'=>$data['avail_cars'],'avail_now'=>($data['id_category']==2 ? true : false)))?>
             <? } ?>
         
         </div>

@@ -58,7 +58,7 @@ $this->menu=array(
 							//'label'=>'<i class="icon-add-menu"></i>',
 							'options'=>array('target'=>"_blank"),
                             //'imageUrl'=>Yii::app()->request->baseUrl.'/media/images/cloud.png',
-                            'url'=>'"/cars/{$data->id}"',
+                            'url'=>'"/cars/view/id_car/{$data->id}"',
                         ),
                         
                     ),

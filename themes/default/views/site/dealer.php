@@ -103,7 +103,7 @@
 				<p class="block_text">Мы постоянно проводим различные акции и спецпредложения</p>
 			</div>
 			<div class="block second">
-				<a href="/cars" class="block_head">Выбрать модель FORD</a>
+				<a href="/avtomobili" class="block_head">Выбрать модель FORD</a>
 				<p class="block_text">Выберите модель Ford по своему вкусу</p>
 			</div>
 			<div class="block third">

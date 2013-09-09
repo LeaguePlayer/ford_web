@@ -19,7 +19,7 @@
                
 				   <? if( $id_type==1 ) { ?>
                    			<? if( $spisok->id_car ) { ?>
-                        <a href="#" class="green_button see">Посмотреть автомобиль</a>
+                        <a href="/cars/view/id_car/<?=$spisok->id_car?>" class="green_button see">Посмотреть автомобиль</a>
                         	<? } ?>
                    <? } else { ?>
                         <a href="/news/<?=$spisok->id?>" class="green_button see">Прочитать новость</a>

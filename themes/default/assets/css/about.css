@@ -659,7 +659,7 @@ h2 {
     text-transform: uppercase; }
   .car-list .car {
     display: inline-block;
-    margin: 0 20px; }
+    margin: 0 20px 35px 20px; }
     .car-list .car .background {
       text-align: center;
       background: url(../img/ford_background.png) no-repeat;
@@ -945,6 +945,11 @@ h2 {
   margin: 0px 0px 100px 0px;
   min-width: 1000px;
   height: 516px;
+  }
+  .discount-img.fix_width
+  {
+		width:auto;
+		  
   }
   .discount-img img {
     width: 1280px;

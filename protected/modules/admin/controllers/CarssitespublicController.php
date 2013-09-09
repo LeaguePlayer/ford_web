@@ -2,6 +2,28 @@
 
 class CarssitespublicController extends AdminController
 {
+	
+	public function actionEditavail()
+	{
+		if(isset($_POST['data']) and Yii::app()->request->isAjaxRequest)
+		{
+			$id = $_POST['data']['id'];
+			$value = $_POST['data']['avail_now'];
+			
+			if(is_numeric($id))
+			{
+				$model = Carssitespublic::model()->findByPk($id,array( 'condition' => "id_site = :id_site",'params'=>array(':id_site'=>Yii::app()->user->currentSiteId) ));
+				if(is_object($model))
+				{
+					$model->avail_now = $value;
+					$model->update();
+				}
+			}
+		}
+		else
+			throw new CHttpException(404,'Страница не существует!');
+	}
+
 	public function actionCreate($id_category)
 	{
 		
@@ -19,8 +41,48 @@ class CarssitespublicController extends AdminController
 			
 			
 			
+		
+			
+			
 			if($model->save())
 			{
+				if(is_numeric($_POST['Carssitespublic']['sync']) and $_POST['Carssitespublic']['sync']==1)
+				{
+					switch($this->currentSiteId)
+					{
+						case 1:
+							$obj = new Carssitespublic;
+							$obj->attributes = $model->attributes;
+							$obj->id_site = 2;
+							$obj->save();
+							$obj = new Carssitespublic;
+							$obj->attributes = $model->attributes;
+							$obj->id_site = 3;
+							$obj->save();
+						break;	
+						case 2:
+							$obj = new Carssitespublic;
+							$obj->attributes = $model->attributes;
+							$obj->id_site = 1;
+							$obj->save();
+							$obj = new Carssitespublic;
+							$obj->attributes = $model->attributes;
+							$obj->id_site = 3;
+							$obj->save();
+						break;	
+						case 3:
+							$obj = new Carssitespublic;
+							$obj->attributes = $model->attributes;
+							$obj->id_site = 2;
+							$obj->save();
+							$obj = new Carssitespublic;
+							$obj->attributes = $model->attributes;
+							$obj->id_site = 1;
+							$obj->save();
+						break;	
+					}
+				}
+				
 				
 				$this->redirect(array("/admin/carssitespublic/list/id_category/{$model->id_category}"));
 			}
