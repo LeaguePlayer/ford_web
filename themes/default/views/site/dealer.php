@@ -110,4 +110,4 @@
 				<a href="/trade-in" class="block_head">Программа TradeIn</a>
 			</div>
 		</section>
-        
+ </div>

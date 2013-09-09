@@ -996,7 +996,7 @@ h2 {
     vertical-align: middle; }
 
 
-#header ul.header_menu li:last-child
+#header ul.header_menu li+li+li
 {
 	width:100px;	
 }
@@ -1037,3 +1037,4 @@ h2 {
 {
 	background-image: url('../img/play_hover.png');	
 }
+
