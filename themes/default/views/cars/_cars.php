@@ -9,7 +9,7 @@
                         	<div style="background-image:url('<?=$car->car->getThumb('medium')?>')"></div>
                             
                         </div>
-                        <p class="car-name"><?=$car->car->title?></p>
+                        <p class="car-name"><?=str_replace("Ford ", "", $car->car->title)?></p>
                         <p class="car-price"> От <?=fnc::priceFormat($car->price)?> Руб.</p>
                     </div>
                 <? } ?>
