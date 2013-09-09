@@ -101,7 +101,7 @@
                                <td<? echo ($object->engine->title ? "" : " class='no_cell'")?>><?=$object->engine->title?><? echo ($object->engine->title ? " л.с." : "")?></td>
                                <td<? echo ($object->body->title ? "" : " class='no_cell'")?>><?=$object->body->title?></td>
                                <td<? echo ($object->akpp->title ? "" : " class='no_cell'")?>><?=$object->akpp->title?></td>
-                               <td class="price"><?=fnc::priceFormat($object->price)?></td>
+                               <td nowrap class="price"><?=fnc::priceFormat($object->price)?></td>
                             </tr>
                        <? } ?>
                     </tbody>
