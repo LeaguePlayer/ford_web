@@ -3,25 +3,32 @@
 class CarsController extends AdminController
 {
 	
+	public function actionCreate()
+	{
+		$model = new Cars;
+		if(isset($_POST['Cars']))
+		{
+			$model->attributes=$_POST['Cars'];
+			if($model->save())
+			{
+				
+				$this->redirect(array("/admin/cars/update/id/{$model->id}?was_created_now"));	
+			}
+		}
+		
+		
+		
+		
+		$this->render('create',array('model'=>$model));
+	}
+	
 	
 	public function actionUpdate($id)
 	{
-		
-		
-			
 		$model = Cars::model()->findByPk($id);
-		
-
-		
-		
 		if(isset($_POST['Cars']))
 		{
-		
-			
 			$model->attributes=$_POST['Cars'];
-			
-			
-			
 			if($model->save())
 			{
 				

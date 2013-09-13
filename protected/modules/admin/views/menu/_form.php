@@ -13,13 +13,22 @@
 
 	<div class="merge_divs">
     	<?php echo $form->textFieldControlGroup($model,'link',array('class'=>'span8','maxlength'=>255)); ?>
-    	<?php echo TbHtml::alert(TbHtml::ALERT_COLOR_WARNING, 'Если вы указываете ссылку на сторонний ресурс - обязательно вначале укажите http://. Если ссылка внутри сайта указывать http:// и название домена - не нужно.'); ?>
+    	
+    </div>
+    <div class="help_tip">Если вы указываете ссылку на сторонний ресурс - обязательно вначале укажите http://. Если ссылка внутри сайта указывать http:// и название домена - не нужно. 
+    <br /> Примеры:
+    <ul>
+    	<li><strong>http://yandex.ru</strong> - ведет на страницу яндекса</li>
+        <li><strong>/</strong> - ведет на главную страницу существующего сайта</li>
+        <li><strong>/postavnovka-na-uchet-v-gibdd</strong> - ведет на страницу постановки на учет внутри сайта</li>
+    </ul>
     </div>
 
 	
 		<?php echo $form->dropDownListControlGroup($model,'show_on_main', fnc::returnYesNo(), array('class'=>'span8', 'displaySize'=>1)); ?>
         
-  
+  <div class="help_tip">На главной страницы меню отличается от меню на других страницах, чтобы этот пункт появился на главной странице сайта - выберите "Да", в ином случае, данный пункт не будет отображаться на главной странице.
+    </div>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Menu::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
 	<div class="form-actions">

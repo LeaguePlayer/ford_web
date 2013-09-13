@@ -18,7 +18,15 @@
 	</div>
 
 	<?php echo $form->textFieldControlGroup($model,'link',array('class'=>'span8','maxlength'=>255)); ?>
-    <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_WARNING, 'Если вы указываете ссылку на сторонний ресурс - обязательно вначале укажите http://. Если ссылка внутри сайта указывать http:// и название домена - не нужно.'); ?>
+   <div class="help_tip">Если вы указываете ссылку на сторонний ресурс - обязательно вначале укажите http://. Если ссылка внутри сайта указывать http:// и название домена - не нужно. 
+    <br /> Примеры:
+    <ul>
+    	<li><strong>http://yandex.ru</strong> - ведет на страницу яндекса</li>
+        <li><strong>/</strong> - ведет на главную страницу существующего сайта</li>
+        <li><strong>/postavnovka-na-uchet-v-gibdd</strong> - ведет на страницу постановки на учет внутри сайта</li>
+    </ul>
+    Ссылку так же можно оставить пустой!
+    </div>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Partners::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
 	<div class="form-actions">

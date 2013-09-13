@@ -62,4 +62,21 @@ class ComplectationvaluesController extends AdminController
 				
 			),false,true);
 	}
+	
+	public function actionDelete($id)
+	{
+		//die('stoped!');
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$model=Complectationvalues::model()->findByPk($id);
+			$model->delete();
+			
+			
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
 }

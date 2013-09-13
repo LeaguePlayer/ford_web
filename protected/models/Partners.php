@@ -135,7 +135,7 @@ class Partners extends EActiveRecord
 		
 		
 		
-		$models = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>"t.status=1",'order'=>'t.sort ASC'));	
+		$models = self::model()->with( array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))) )->findAll(array('condition'=>"t.status=1 and image!=''",'order'=>'t.sort ASC'));	
 		
 	
 		

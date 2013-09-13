@@ -114,6 +114,16 @@ $('.search-form form').submit(function(){
 				),
 				array(
 					'class'=>'bootstrap.widgets.TbButtonColumn',
+					'buttons'=>array
+                    (
+                        'view' => array
+                        (
+							'options'=>array('target'=>"_blank"),
+                            'url'=>'Yii::app()->createUrl("/stock/{$data->id}")',
+                        ),
+						
+                        
+                    ),
 				),
 			),
 		)); ?>
@@ -162,6 +172,7 @@ $('.search-form form').submit(function(){
                     (
                         'view' => array
                         (
+							'options'=>array('target'=>"_blank"),
                             'url'=>'Yii::app()->createUrl("/news/{$data->id}")',
                         ),
 						

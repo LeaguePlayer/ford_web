@@ -121,6 +121,27 @@ function editAvailNow()
 
 $(document).ready(function(e) {
 	
+	$('.go_to_gallery').click(function(){
+		var destination = $('#Cars_pathcontainer').offset().top;
+        $('html,body').animate( { scrollTop: destination }, 800);	
+	});
+	
+	$('#Cars_title').keyup(function(){
+		var model_1 = $(this).val();
+		model_1 = model_1.replace(new RegExp(" ",'g'),"+");
+		
+		
+		
+		
+	//	var href_1 = "https://www.google.ru/#newwindow=1&q="+model_1+"+png" ;
+	//	var href_2 = "https://www.google.ru/#newwindow=1&q="+model_1+"+1280px";
+	var href_1 = "https://www.google.ru/search?q="+model_1+"+png&newwindow=1&tbm=isch&tbo=u&source=univ&sa=X&ei=nb0yUozJFabV4AS--IAw&ved=0CCoQsAQ&biw=1375&bih=742&dpr=1";
+					var href_2 = "https://www.google.ru/search?q="+model_1+"+1280px&newwindow=1&tbm=isch&tbo=u&source=univ&sa=X&ei=nb0yUozJFabV4AS--IAw&ved=0CCoQsAQ&biw=1375&bih=742&dpr=1";
+		
+		$('.href_1 a').attr('href',href_1);
+		$('.href_2 a').attr('href',href_2);
+	});
+	
 	
 	$('.avail_now').click( editAvailNow );
 	

@@ -18,6 +18,8 @@
 		<?php echo $form->fileField($model,'image', array('class'=>'span8')); ?>
 		<?php echo $form->error($model, 'image'); ?>
 	</div>
+    <div class="help_tip">Слайды показываются только с загруженным изображением! В ином случае, даже если слайд опубликован - он показываться не будет.
+    </div>
 
 	<?php echo $form->textFieldControlGroup($model,'title',array('class'=>'span8','maxlength'=>255)); ?>
 
@@ -30,7 +32,15 @@
 
 	<div class="merge_divs">
     	<?php echo $form->textFieldControlGroup($model,'link',array('class'=>'span8','maxlength'=>255)); ?>
-    	<?php echo TbHtml::alert(TbHtml::ALERT_COLOR_WARNING, 'Если вы указываете ссылку на сторонний ресурс - обязательно вначале укажите http://. Если ссылка внутри сайта указывать http:// и название домена - не нужно.'); ?>
+    </div>
+    <div class="help_tip">Если вы указываете ссылку на сторонний ресурс - обязательно вначале укажите http://. Если ссылка внутри сайта указывать http:// и название домена - не нужно. 
+    <br /> Примеры:
+    <ul>
+    	<li><strong>http://yandex.ru</strong> - ведет на страницу яндекса</li>
+        <li><strong>/</strong> - ведет на главную страницу существующего сайта</li>
+        <li><strong>/postavnovka-na-uchet-v-gibdd</strong> - ведет на страницу постановки на учет внутри сайта</li>
+    </ul>
+    Ссылку так же можно оставить пустой, тогда кнопка на слайдере показываться не будет!
     </div>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Slider::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>

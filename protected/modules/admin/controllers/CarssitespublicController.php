@@ -86,15 +86,60 @@ class CarssitespublicController extends AdminController
 				
 				$this->redirect(array("/admin/carssitespublic/list/id_category/{$model->id_category}"));
 			}
+			else
+			{
+				$model_a=Carcomplecations::model()->findAll('id_car=:parent_id',array(':parent_id'=>$model->id_car));
+				if( count($model_a) == 0) 
+				{
+					$data['complecations']=array("Не выбрана категория");
+				}
+				else
+					$data['complecations']=CHtml::listData($model_a,'id','title');
+				$data['complecations'][0] = "Не выбрана категория";
+				ksort($data['complecations']);
+				
+				
+				$model_b=Carakpp::model()->findAll('id_car=:parent_id',array(':parent_id'=>$model->id_car));
+				if( count($model_b) == 0) 
+				{
+					$data['akpp']=array("Не выбрана категория");
+				}
+				else
+					$data['akpp']=CHtml::listData($model_b,'id','title');
+				$data['akpp'][0] = "Не выбрана категория";
+				ksort($data['akpp']);
+				
+				
+				$model_c=Carbody::model()->findAll('id_car=:parent_id',array(':parent_id'=>$model->id_car));
+				if( count($model_c) == 0) 
+				{
+					$data['body']=array("Не выбрана категория");
+				}
+				else
+					$data['body']=CHtml::listData($model_c,'id','title');
+				$data['body'][0] = "Не выбрана категория";
+				ksort($data['body']);
+				
+				
+				$model_d=Engine::model()->findAll('id_car=:parent_id',array(':parent_id'=>$model->id_car));
+				if( count($model_d) == 0) 
+				{
+					$data['engine']=array("Не выбрана категория");
+				}
+				else
+					$data['engine']=CHtml::listData($model_d,'id','title');
+				$data['engine'][0] = "Не выбрана категория";
+				ksort($data['engine']);	
+			}
 		}
 		
 		
 		$data['cars'] = Cars::getCars();
 		
-		$data['complecations'][0] = "Не выбрана категория";
-		$data['akpp'][0] = "Не выбрана категория";
-		$data['body'][0] = "Не выбрана категория";
-		$data['engine'][0] = "Не выбрана категория";
+		if( !isset($data['complecations']) ) $data['complecations'][0] = "Не выбрана категория";
+		if( !isset($data['akpp']) ) $data['akpp'][0] = "Не выбрана категория";
+		if( !isset($data['body']) ) $data['body'][0] = "Не выбрана категория";
+		if( !isset($data['engine']) ) $data['engine'][0] = "Не выбрана категория";
 		
 		$this->render('create',array('model'=>$model, 'id_category'=>$id_category, 'data'=>$data));
 	}
@@ -392,6 +437,25 @@ class CarssitespublicController extends AdminController
 		else 
 			throw new CHttpException(404,'Страница не существует!');
 		
+	}
+	
+	
+	
+	public function actionDelete($id)
+	{
+		//die('stoped!');
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$model=Carssitespublic::model()->findByPk($id);
+			$model->delete();
+			
+			
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 	
 	

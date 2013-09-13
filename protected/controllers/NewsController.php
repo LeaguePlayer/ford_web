@@ -32,7 +32,7 @@ class NewsController extends Controller
 		
 		if(is_numeric($id))
 		{
-			$model = News::model()->with(array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))))->findByPk($id);
+			$model = News::model()->with(array('site' => array('condition' => "(id_site = :id_site or id_site=0)",'params'=>array(':id_site'=>Yii::app()->controller->id_site))))->findByPk($id, "t.status = 1");
 			
 				
 		

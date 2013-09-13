@@ -85,7 +85,7 @@ class Cars extends EActiveRecord
 				'attributeName'=>'image',
 				'versions' => array(
 					'small' => array(
-						'centeredpreview' => array(90, 90),
+						'resize' => array(90, 90),
 					),
 					'medium' => array(
 						'resize' => array(238, 233),

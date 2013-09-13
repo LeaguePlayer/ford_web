@@ -98,3 +98,10 @@ form .line{
 	text-decoration:none;
 	background:#eee;	
 }
+.help_tip
+{
+	margin: 0 0 40px 0;	
+	background: url(../img/help.png) no-repeat left 6px;
+	padding: 4px 4px 4px 24px;
+	
+}

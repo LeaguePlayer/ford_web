@@ -97,7 +97,7 @@ class Staticpage extends EActiveRecord
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('html_content',$this->html_content,true);
 		$criteria->compare('image',$this->image,true);
-		$criteria->compare('status',$this->status);
+		$criteria->compare('t.status',$this->status);
 		$criteria->compare('meta_title',$this->meta_title,true);
 		$criteria->compare('meta_keys',$this->meta_keys,true);
 		$criteria->compare('meta_desc',$this->meta_desc,true);

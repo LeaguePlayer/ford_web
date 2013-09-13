@@ -143,5 +143,10 @@ class Complectationvalues extends EActiveRecord
 		return $result;
 			
 	}
+	
+	public function beforeDelete()
+    {
+        return true;
+    }
 
 }

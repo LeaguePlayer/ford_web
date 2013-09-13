@@ -1,7 +1,11 @@
 <?php
-$this->menu=array(
-	array('label'=>'Добавить','url'=>array("staticpage/create/system_page/{$system_page}")),
-);
+if($system_page!=1 or isset($_GET['test']) )
+{
+		$this->menu=array(
+			array('label'=>'Добавить','url'=>array("staticpage/create/system_page/{$system_page}")),
+		);
+}
+
 ?>
 
 <h1>Управление <?php echo $model->translition(); ?></h1>

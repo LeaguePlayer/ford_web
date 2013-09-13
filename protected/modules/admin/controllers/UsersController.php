@@ -36,10 +36,13 @@ class UsersController extends AdminController
 	public function actionUpdate($id)
 	{
 		
-		
 			
-		$model = Users::model()->with( 'sites' )->findByPk($id);
+		$model = Users::model()->with( 'site' )->findByPk($id);
+		
+		if($model->site->id_site==0 and Yii::app()->user->id_site!=0) throw new CHttpException(404, 'Недостаточно прав доступа');
+		
 		if(!is_object($model)) $model = Users::model()->findByPk($id);
+		
 		
 		
 		//
@@ -88,6 +91,28 @@ class UsersController extends AdminController
 			
 			
 		));
+	}
+	
+	
+	public function actionDelete($id)
+	{
+		//die('stoped!');
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$model=Users::model()->with('site')->findByPk($id);
+			
+			if($model->site->id_site==0 and Yii::app()->user->id_site!=0) 
+				throw new CHttpException(404, 'Недостаточно прав доступа');
+			else
+				$model->delete();
+			
+			
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 	
 }
