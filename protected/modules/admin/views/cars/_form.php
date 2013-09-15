@@ -42,7 +42,13 @@ if( isset($_GET['was_created_now']) )
     </div>
 	
      <?php echo $form->textFieldControlGroup($model,'price',array('class'=>'span8')); ?>
-    	
+     
+     
+     <?php echo $form->textAreaControlGroup($model,'configurator',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
+    	<div class="help_tip">
+    		Вставить ссылку на конфигуратор с официального сайта ford. <a href="http://www.config.ford.ru/fordconnection/ru_RU/cv/configStart.do" target="_blank">Для коммерческих автомобилей</a> или <a href="http://www.config.ford.ru/fordconnection/ru_RU/pv/configStart.do" target="_blank">автомобилей</a>.
+            </div>
+        
 	<fieldset>
     	<legend>Промо Ролик 1</legend>
        

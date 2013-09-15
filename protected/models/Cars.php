@@ -34,7 +34,7 @@ class Cars extends EActiveRecord
 			array('title', 'required'),
 			array('price, gallery, status, sort, create_time, update_time', 'numerical', 'integerOnly'=>true),
 			array('title, path, big_image, image_video1, image_video2, image_video3, meta_title, link', 'length', 'max'=>255),
-			array('video1, video2, video3, meta_keys, meta_desc', 'safe'),
+			array('video1, video2, video3, meta_keys, meta_desc, configurator', 'safe'),
 			// The following rule is used by search().
 			array('id, title, image, price, video1, video2, video3, gallery, meta_title, meta_keys, meta_desc, status, sort, create_time, update_time', 'safe', 'on'=>'search'),
 		);
@@ -69,7 +69,7 @@ class Cars extends EActiveRecord
 			'update_time' => 'Дата последнего редактирования',
 			'path'=>'PDF-брошюра',
 			'link'=>'Ссылка на официальный сайт на данную модель',
-			
+			'configurator'=>'Ссылка на конфигуратор',
 			'image_video1'=>'Заглушка изображение №1',
 			'image_video2'=>'Заглушка изображение №2',
 			'image_video3'=>'Заглушка изображение №3',

@@ -8,11 +8,29 @@ function close_on_fancy()
 
 
 
+
+
+
 $(document).ready(function() {
 	
+	$(window).scroll(function () { 
+				var startOffset 		=  $('#group_table_benefit').offset().top;
+				var place_for_animate = $('#group_table_benefit').height();
+				var scroll_now = $(document).scrollTop();
+				//console.log(scroll_now);
+				
+				if(scroll_now>=startOffset-100 && scroll_now<=place_for_animate+startOffset)
+				{
+					
+					$('#slide_for_benefit').css('top',scroll_now-startOffset+100);
+				}
+				
+				
+			});
 	
 	
-	
+		
+		
 	
 	
 	
@@ -27,6 +45,12 @@ $("select").selectbox();
 		},
 		padding: 0,
 		fitToView: false,
+	});
+	
+	$(".fancybox_iframe").fancybox({
+		type: "iframe",
+		
+		
 	});
 	
 	$(".fancybox_up").fancybox({

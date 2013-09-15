@@ -854,14 +854,44 @@ h2 {
   .equip table .price {
     font-weight: bold; }
 .equip .benefit {
+	
   width: 115px;
   display: inline-block;
   vertical-align: top;
-  background: url(../img/benefit.jpg) no-repeat;
+ 
   padding: 70px 10px 0 10px;
   color: #ffb43e;
   font-weight: 800;
   font-size: 12px; }
+  #slide_for_benefit
+  {
+	  margin-left: 20px;
+  }
+  .box
+  {
+		background:#ffb040;
+		width:114px;
+		height:45px;
+		  padding-top:10px;
+  }
+  .box .podarok
+  {
+	  	  
+		  width:32px;
+		  height:33px;
+		  background: url(../img/box.png) no-repeat;
+		  position:relative;
+		  margin-left:13px;
+		  
+  }
+    .upder_box
+	{
+		padding-top:10px;
+		color:#ffb43e;
+		font-size:12px;	
+		line-height:12px;
+		font-weight:bold;
+	}
 .equip .green_button {
   line-height: 3; }
 .equip a {
@@ -1042,4 +1072,14 @@ h2 {
 {
 	background-image: url('../img/play_hover.png');	
 }
+#group_table_benefit
+{
+	position:relative;	
+}
 
+#slide_for_benefit
+{
+	position:absolute;	
+	width:115px;
+	display:inline-block;
+}

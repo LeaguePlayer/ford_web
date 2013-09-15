@@ -86,35 +86,46 @@
         
         <section class="equip fix_width">
         
-        	<? if( count($data['complectations']) > 0 ) { ?>
-            <h2>Доступные комплектации</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Название комплектации</th><th>Мощность двигателся</th><th>Тип кузова</th><th>Тип КПП</th><th>Цена</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    	<? foreach( $data['complectations'] as $object ) { ?>
-                            <tr>
-                            	<td<? echo ($object->body->title ? "" : " class='no_cell'")?>><?=$object->body->title?></td>
-                               <td<? echo ($object->complectation->title ? "" : " class='no_cell'")?>><?=$object->complectation->title?></td>
-                               <td<? echo ($object->engine->title ? "" : " class='no_cell'")?>><?=$object->engine->title?></td>
-                               <td<? echo ($object->akpp->title ? "" : " class='no_cell'")?>><?=$object->akpp->title?></td>
-                               <td nowrap class="price"><?=fnc::priceFormat($object->price)?></td>
-                            </tr>
-                       <? } ?>
-                    </tbody>
-                </table>
-            <? } ?>
-        
-			<? if( $data['car_menu']->price and $data['car_menu']->price > 0 ) { ?>
-                <p class="benefit">
-                    Выгода до <br /><?=fnc::priceFormat($data['car_menu']->price)?> рублей!
-                </p>
-            <? } ?>
+        	<div id="group_table_benefit">
+				<? if( count($data['complectations']) > 0 ) { ?>
+                   
+                            <h2>Доступные комплектации</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Название комплектации</th><th>Мощность двигателся</th><th>Тип кузова</th><th>Тип КПП</th><th>Цена</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <? foreach( $data['complectations'] as $object ) { ?>
+                                        <tr>
+                                            <td<? echo ($object->body->title ? "" : " class='no_cell'")?>><?=$object->body->title?></td>
+                                           <td<? echo ($object->complectation->title ? "" : " class='no_cell'")?>><?=$object->complectation->title?></td>
+                                           <td<? echo ($object->engine->title ? "" : " class='no_cell'")?>><?=$object->engine->title?></td>
+                                           <td<? echo ($object->akpp->title ? "" : " class='no_cell'")?>><?=$object->akpp->title?></td>
+                                           <td nowrap class="price"><?=fnc::priceFormat($object->price)?></td>
+                                        </tr>
+                                   <? } ?>
+                                </tbody>
+                            </table>
+                     
+                <? } ?>
+            
+                <? if( $data['car_menu']->price and $data['car_menu']->price > 0 ) { ?>
+                <div id="slide_for_benefit">
+                    
+                    	<div class="box"><div class="podarok"></div></div>
+                        <div class="upder_box">Выгода до <br /><?=fnc::priceFormat($data['car_menu']->price)?> рублей!</div>
+                        
+                    
+                </div>
+                <? } ?>
+            </div>
             <div style="overflow:hidden;">
-                <!--<a href="#" class="gray_button"><img src="<?php //echo $this->getAssetsUrl() ?>/img/compare.png" alt="">Сравнить комплектации</a>-->
+                <? if( $data['car_menu']->configurator ) { ?>
+                <a href="<?=$data['car_menu']->configurator?>" class="gray_button fancybox_iframe"><img src="<?php echo $this->getAssetsUrl() ?>/img/compare.png" alt="">Конфигуратор авто</a>
+                <? } ?>
+                
                 <a href="/site/credit/id_car/<?=$data['car_menu']->id?>" class="orange_button fancybox">Взять в кредит</a>
                 <a href="/site/buy/id_car/<?=$data['car_menu']->id?>" class="orange_button fancybox">Купить</a>
                 <a class="green_button fancybox" href="/site/testdrive/car/<?=$data['car_menu']->id?>"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""><span>Записаться на тест-драйв</span></a>
