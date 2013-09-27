@@ -632,6 +632,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 		width: 310px;
 		padding: 0 22px 0 16px;
 	}
+	.before_footer .col-1 a
+	{
+		color: #3499dd;
+	}
 	.before_footer .col-2 {
 		width: 300px;
 		padding: 0 46px 0 14px;
@@ -921,3 +925,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 	{
 		background: url('fancybox/fancybox_loading.gif') center center no-repeat;	
 	}
+	
+	.list_menu
+	{
+		overflow:hidden;
+			bottom:-78px;
+			left: 0;		
+			background: #f8f8f8;
+			width:100%;
+			z-index:10;
+			
+	}
+	.list_menu.shadow
+	{
+		box-shadow: 0px -3px 20px #707070;
+	}
+	.list_menu.shadow div.fix_width
+	{
+		padding:15px 10px;	
+	}
+	
+	

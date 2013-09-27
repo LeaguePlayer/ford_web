@@ -30,7 +30,7 @@ class StaticpageController extends Controller
 	public function actionView($alias)
 	{
 		
-		$model = Staticpage::model()->find( array( 'condition'=>"meta_alias = :meta_alias", 'params'=>array( ':meta_alias'=>$alias ) ) );
+		$model = Staticpage::model()->find( array( 'condition'=>"meta_alias = :meta_alias and status=1", 'params'=>array( ':meta_alias'=>$alias ) ) );
 		
 		if($model->system_page==1 and $model->system_group!=0)
 			$model = Staticpage::getSystemPage($model->system_group);

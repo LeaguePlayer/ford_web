@@ -5,19 +5,23 @@
 			
             <?=$data['page']->html_content?>
 
-			<div class="paragraph about webcam">
-				<h2><?=$data['camera']->title?></h2>
-				<div class="viewcam">
-					<span class="courner-lt"></span>
-					<span class="courner-lb"></span>
-					<span class="courner-rt"></span>
-					<span class="courner-rb"></span>
-					<img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/by_view.jpg" alt="">
-					<a href="#" class="orange_button">к просмотру</a>
-				</div>
-				<?=$data['camera']->html_content?>
-			</div>
-			
+			<? if( $this->settings->link_on_webcam ) { ?>
+                <div class="paragraph about webcam">
+                    <h2><?=$data['camera']->title?></h2>
+                    <div class="viewcam">
+                        <span class="courner-lt"></span>
+                        <span class="courner-lb"></span>
+                        <span class="courner-rt"></span>
+                        <span class="courner-rb"></span>
+                        <img src="<?php echo $this->getAssetsUrl() ?>/img/tmp/by_view.jpg" alt="">
+                        <a href="<?=$this->settings->link_on_webcam?>" class="orange_button fancybox_iframe">к просмотру</a>
+                    </div>
+                    
+                    
+                        <?=$data['camera']->html_content?>
+                    
+                </div>
+			<? } ?>
             
             <?=$this->renderPartial('/stuff/list',array('stuff'=>$data['stuff']))?>
 			

@@ -23,6 +23,9 @@
 		<?php echo $form->fileField($model,'image', array('class'=>'span8')); ?>
 		<?php echo $form->error($model, 'image'); ?>
 	</div>
+    <div class="help_tip">
+     	Изображение должно быть минимум 1280 пикселей по ширине и 516 пикселей по высоте - это важно! Иначе изображение будет отображаться не корректно.
+     </div>
 
 	<?php echo $form->dropDownListControlGroup($model, 'status', Staticpage::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
     

@@ -44,6 +44,7 @@ class Cars extends EActiveRecord
 	public function relations()
 	{
 		return array(
+			'relativeCars' => array(self::STAT, 'Carssitespublic', 'id_car', 'condition'=>"status = 1"),
 		);
 	}
 
@@ -215,10 +216,11 @@ class Cars extends EActiveRecord
 	public static function getCar($id)
 	{
 		
-		$model = self::model()->findByPk($id,"t.status=1");	
+		$model = self::model()->with('relativeCars')->findByPk($id,"t.status=1");	
 		
-		
-		return $model;
+		if($model->relativeCars>0)
+			return $model;
+		else return false;
 	}
 	
 

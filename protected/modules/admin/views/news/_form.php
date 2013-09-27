@@ -38,6 +38,9 @@
 		<?php echo $form->fileField($model,'image', array('class'=>'span8')); ?>
 		<?php echo $form->error($model, 'image'); ?>
 	</div>
+    <div class="help_tip">
+     	Изображение должно быть минимум 1280 пикселей по ширине и 516 пикселей по высоте - это важно! Иначе изображение будет отображаться не корректно.
+     </div>
     
     <div class="for_stock">
     <?
@@ -91,7 +94,8 @@
 	
 	<?php //echo $form->textFieldControlGroup($model,'super_work_to',array('class'=>'span8','maxlength'=>255)); ?>
     
-  
+  <?php echo $form->dropDownListControlGroup($model, 'status', News::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
+	
 
 	</fieldset>
 	
@@ -107,7 +111,6 @@
     </fieldset>
     
 
-	<?php echo $form->dropDownListControlGroup($model, 'status', News::getStatusAliases(), array('class'=>'span8', 'displaySize'=>1)); ?>
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

@@ -19,7 +19,7 @@
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.color.js', CClientScript::POS_END);
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/lib/jquery.selectbox-0.2.min.js', CClientScript::POS_END);
 	$cs->registerScriptFile($this->getAssetsUrl().'/js/gallery.js', CClientScript::POS_END);
-	$cs->registerScriptFile($this->getAssetsUrl().'/js/script.js', CClientScript::POS_END);
+	$cs->registerScriptFile($this->getAssetsUrl().'/js/script.js?v=1', CClientScript::POS_END);
 	
 	
 ?><!DOCTYPE html>

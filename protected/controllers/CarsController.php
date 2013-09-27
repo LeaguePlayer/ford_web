@@ -46,7 +46,7 @@ class CarsController extends Controller
 			
 			if(is_object($car))
 			{
-				Yii::app()->clientScript->registerScriptFile( $this->getAssetsUrl()."/js/jquery.jrumble.1.3.min.js" );
+				Yii::app()->clientScript->registerScriptFile( $this->getAssetsUrl()."/js/cars.js" );
 				
 				if($avail_now and $avail_now=="yes") $avail_now = true; // смотрим, есть ли якорь - если да, то будем показывать авто только те, что в наличии 
 				

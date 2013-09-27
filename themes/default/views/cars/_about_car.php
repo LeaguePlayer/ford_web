@@ -121,13 +121,15 @@
                 </div>
                 <? } ?>
             </div>
-            <div style="overflow:hidden;">
-                <? if( $data['car_menu']->configurator ) { ?>
-                <a href="<?=$data['car_menu']->configurator?>" class="gray_button fancybox_iframe"><img src="<?php echo $this->getAssetsUrl() ?>/img/compare.png" alt="">Конфигуратор авто</a>
-                <? } ?>
-                
-                <a href="/site/credit/id_car/<?=$data['car_menu']->id?>" class="orange_button fancybox">Взять в кредит</a>
-                <a href="/site/buy/id_car/<?=$data['car_menu']->id?>" class="orange_button fancybox">Купить</a>
-                <a class="green_button fancybox" href="/site/testdrive/car/<?=$data['car_menu']->id?>"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""><span>Записаться на тест-драйв</span></a>
+            <div class="list_menu">
+            	<div class="fix_width">
+                					<? if( $data['car_menu']->configurator ) { ?>
+                    <a href="<?=$data['car_menu']->configurator?>" class="gray_button fancybox_iframe"><img src="<?php echo $this->getAssetsUrl() ?>/img/compare.png" alt="">Конфигуратор авто</a>
+                    <? } ?>
+                    
+                    <a href="/site/credit/id_car/<?=$data['car_menu']->id?>" class="orange_button fancybox">Взять в кредит</a>
+                    <a href="/site/buy/id_car/<?=$data['car_menu']->id?>" class="orange_button fancybox">Купить</a>
+                    <a class="green_button fancybox" href="/site/testdrive/car/<?=$data['car_menu']->id?>"><img src="<?php echo $this->getAssetsUrl() ?>/img/test_drive.png" alt=""><span>Записаться на тест-драйв</span></a>
+				</div>
             </div>
         </section>
