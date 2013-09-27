@@ -1,11 +1,11 @@
 <?php
 
 	$cs = Yii::app()->clientScript;
-	$cs->registerCssFile($this->getAssetsUrl().'/css/style.css');
+	//$cs->registerCssFile($this->getAssetsUrl().'/css/style.css');
 	$cs->registerCssFile($this->getAssetsUrl().'/css/fancybox/jquery.fancybox.css');
 	$cs->registerCssFile($this->getAssetsUrl().'/css/selectbox/jquery.selectbox.css');
 	$cs->registerCssFile('http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,700,800&subset=latin,cyrillic');
-	$cs->registerCssFile($this->getAssetsUrl().'/css/style.css');
+	$cs->registerCssFile($this->getAssetsUrl().'/css/style.css?v=1');
 	$cs->registerCssFile($this->getAssetsUrl().'/css/about.css');
 
 	

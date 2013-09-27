@@ -14,6 +14,8 @@
 	<?php echo $form->textFieldControlGroup($model,'link_on_vk',array('class'=>'span8','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'link_on_twitter',array('class'=>'span8','maxlength'=>255)); ?>
+    
+    <?php echo $form->textFieldControlGroup($model,'link_on_insta',array('class'=>'span8','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'link_on_webcam',array('class'=>'span8','maxlength'=>255)); ?>
 
