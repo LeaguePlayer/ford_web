@@ -138,10 +138,12 @@ class Carssitespublic extends EActiveRecord
 				$id_category = "1,3";
 				$avail_now = "1";
 		}
+		//echo Yii::app()->controller->id_site;die();
 		
-		$model = self::model()->with('car')->findAll(array('condition'=>'t.status=1 and car.big_image!="" and image!="" and id_site = :id_site and id_category in (:id_category) and avail_now in (:avail_now)','order'=>'t.price ASC', 'select'=>'*,min(t.price) as price', 'group'=>'id_car', 'params'=>array(':id_site'=>Yii::app()->controller->id_site, ':id_category'=>$id_category, ':avail_now'=>$avail_now)));	
 		
+		$model = self::model()->with('car')->findAll(array('condition'=>"t.status=1 and car.big_image!='' and image!='' and id_site = :id_site and id_category in ({$id_category}) and avail_now in ({$avail_now})",'order'=>'t.price ASC', 'select'=>'*,min(t.price) as price', 'group'=>'id_car', 'params'=>array(':id_site'=>Yii::app()->controller->id_site)));	
 		
+	
 		
 		return $model;
 	}
