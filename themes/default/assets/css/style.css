@@ -230,7 +230,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 }
 	#content .specials {
 		overflow: hidden;
-		
+		padding-bottom:10px;
 	}
 	#content .specials h2.caption {
 		font-size: 36px;
@@ -840,6 +840,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ea06', end
 	}
 	#footer .socials ul li a.twitter {
 		background-position: -90px 0;
+	}
+	#footer .socials ul li a.insta
+	{
+		background:url('../img/insta.png') no-repeat;
 	}
 
 	#footer .menu {

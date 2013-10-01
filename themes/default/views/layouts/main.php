@@ -119,9 +119,10 @@
 				<div class="socials">
 					<h3>Нравится Ford?</h3>
 					<ul>
-						<? if($this->settings->link_on_facebook) {?><li><a class="facebook" href="<?=$this->settings->link_on_facebook?>"></a></li><? }?>
-						<? if($this->settings->link_on_vk) {?><li><a class="vkontakte" href="<?=$this->settings->link_on_vk?>"></a></li><? }?>
-						<? if($this->settings->link_on_twitter) {?><li><a class="twitter" href="<?=$this->settings->link_on_twitter?>"></a></li><? }?>
+						<? if($this->settings->link_on_facebook) {?><li><a target="_blank" class="facebook" href="<?=$this->settings->link_on_facebook?>"></a></li><? }?>
+						<? if($this->settings->link_on_vk) {?><li><a target="_blank" class="vkontakte" href="<?=$this->settings->link_on_vk?>"></a></li><? }?>
+						<? if($this->settings->link_on_twitter) {?><li><a target="_blank" class="twitter" href="<?=$this->settings->link_on_twitter?>"></a></li><? }?>
+                        <? if($this->settings->link_on_insta) {?><li><a target="_blank" class="insta" href="<?=$this->settings->link_on_insta?>"></a></li><? }?>
 					</ul>
 				</div>
 				<div class="menu">
